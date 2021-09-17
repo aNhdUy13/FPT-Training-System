@@ -1,0 +1,24 @@
+{
+    "name": "duyanhnguyen",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aNhdUy13/FPT-Traning-System.git"
+    },
+    "author": "Nguyen Duy Anh",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/aNhdUy13/FPT-Traning-System/issues"
+    },
+    "homepage": "https://github.com/aNhdUy13/FPT-Traning-System#readme"
+}
