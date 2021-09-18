@@ -16,9 +16,7 @@ app.get('/', (req, res) => {
     res.render('main');
 })
 
-app.get('/home', (req, res) => {
-    res.render('main');
-})
+
 
 
 /* Regarding Css */
