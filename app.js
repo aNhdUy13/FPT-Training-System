@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
-    res.render('main');
+    res.render('login');
 })
 
 app.get('/home', (req, res) => {
