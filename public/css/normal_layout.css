@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #dfa86a;
+}
+
+div.container {
+    width: 100%;
+}
+
+
+/*=============================== Header ===============================*/
+
+div.header {
+    width: 100%;
+    height: 150px;
+}
+
+div.greeting {
+    width: 100%;
+    height: 75%;
+    font-size: 60px;
+    font-family: Courier;
+    text-align: center;
+}
+
+div.navigation_bar {
+    width: 100%;
+    height: 25%;
+    background-color: #be823e;
+}
+
+div.navigation_bar {
+    position: sticky;
+    top: 0%;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul {
+    padding: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    padding: 5px;
+    display: block;
+    color: white;
+    background-color: #ac7435;
+}
+
+nav ul li a:hover {
+    background-color: black;
+}
+
+input.get_text_search {
+    margin-left: 60%;
+}
+
+
+/* (End) Header */
+
+
+/*=============================== Main Content ===============================*/
+
+div.main_Content {
+    width: 100%;
+    height: 1200px;
+    background-color: #f1f1f1;
+    margin-bottom: 20px;
+}
+
+div.intro_image_content {
+    width: 100%;
+    height: 500px;
+}
+
+div.intro_image_content img {
+    width: 100%;
+    height: 100%;
+    background: url(https://viettinlaw.com/wp-content/uploads/2016/07/1010_dochoitreem-LEGODuplo10546-1024x533.jpg);
+}
+
+div.product_content {
+    width: 100%;
+    height: 700px;
+    background-color: #ffffff;
+    overflow: auto;
+}
+
+div.product_content_detail {
+    display: inline-block;
+    width: 18%;
+    height: 250px;
+    margin-left: 10%;
+    margin-top: 2%;
+    background-color: #f1f1f1;
+}
+
+div.product_content img {
+    width: 100%;
+    height: 170px;
+    margin-bottom: -10px;
+}
+
+div.insertProduct {
+    width: 100%;
+    height: 40%;
+}
+
+div.insertProduct div.insertTitle {
+    margin-left: 43%;
+}
+
+div.insertProduct table {
+    border: 1px solid black;
+    padding: 20px;
+    padding-right: 110px;
+    padding-left: 50px;
+    margin-left: 30%;
+}
+
+div.insertProduct table input {
+    margin-bottom: 5px;
+}
+
+div.insertProduct table input.insertButton {
+    width: 90px;
+    margin-top: 10px;
+}
+
+div.product_content p.product_id {
+    text-align: center;
+    height: 25px;
+}
+
+div.product_content p.product_name {
+    text-align: center;
+    height: 25px;
+}
+
+div.product_content button.product_price {
+    width: 100px;
+    height: 25px;
+    margin-left: 25%;
+}
+
+div.tableProduct {
+    width: 100%;
+    height: 45%;
+    overflow: auto;
+}
+
+div.tableProduct form {
+    margin-left: 32%;
+    margin-bottom: 1%;
+}
+
+div.tableProduct table {
+    width: 80%;
+    margin-left: 10%;
+}
+
+div.tableProduct table button a {
+    text-decoration: none;
+    text-decoration-color: black;
+}
+
+
+/* (End) Main Content */
+
+div.footer {
+    width: 100%;
+    padding: 40px;
+    color: black;
+    text-align: center;
+    height: 150px;
+    clear: both;
+    background-color: #dfa86a;
+}
