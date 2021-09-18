@@ -16,12 +16,15 @@ app.get('/', (req, res) => {
     res.render('main');
 })
 
+app.get('/home', (req, res) => {
+    res.render('main');
+})
+
 
 /* Regarding Css */
 app.use(express.static('public'));
 
 /* (End) Regarding Css */
-
 
 const PORT = 5000;
 app.listen(process.env.PORT || PORT);

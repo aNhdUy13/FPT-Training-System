@@ -21,7 +21,7 @@ div.header {
 div.greeting {
     width: 100%;
     height: 75%;
-    font-size: 60px;
+    font-size: 50px;
     font-family: Courier;
     text-align: center;
 }
@@ -69,7 +69,7 @@ input.get_text_search {
 
 div.main_Content {
     width: 100%;
-    height: 1200px;
+    height: 500px;
     background-color: #f1f1f1;
     margin-bottom: 20px;
 }
@@ -81,30 +81,10 @@ div.intro_image_content {
 
 div.intro_image_content img {
     width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100%;
-    background: url(https://viettinlaw.com/wp-content/uploads/2016/07/1010_dochoitreem-LEGODuplo10546-1024x533.jpg);
-}
-
-div.product_content {
-    width: 100%;
-    height: 700px;
-    background-color: #ffffff;
-    overflow: auto;
-}
-
-div.product_content_detail {
-    display: inline-block;
-    width: 18%;
-    height: 250px;
-    margin-left: 10%;
-    margin-top: 2%;
-    background-color: #f1f1f1;
-}
-
-div.product_content img {
-    width: 100%;
-    height: 170px;
-    margin-bottom: -10px;
+    background: url(https://wallpaperaccess.com/full/1176260.jpg);
 }
 
 div.insertProduct {
