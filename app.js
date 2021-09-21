@@ -5,7 +5,6 @@ const app = express();
 app.set('view engine', 'hbs');
 
 
-
 var bodyParser = require("body-parser");
 //const { Console } = require('console');
 app.use(bodyParser.urlencoded({ extended: false }));
