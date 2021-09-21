@@ -10,7 +10,17 @@ var bodyParser = require("body-parser");
 //const { Console } = require('console');
 app.use(bodyParser.urlencoded({ extended: false }));
 
+var adminController = require('./admin.js');
+app.use('/admin', adminController);
 
+var adminController = require('./staff.js');
+app.use('/staff', adminController);
+
+var adminController = require('./trainer.js');
+app.use('/trainer', adminController);
+
+var adminController = require('./trainee.js');
+app.use('/trainee', adminController);
 
 app.get('/', (req, res) => {
     res.render('login');
