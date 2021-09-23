@@ -10,7 +10,7 @@ var bodyParser = require("body-parser");
 //const { Console } = require('console');
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
+const dbHandler = require('./databaseHandler');
 
 
 app.get('/', (req, res) => {
