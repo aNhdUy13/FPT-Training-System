@@ -4,10 +4,23 @@ const hbs = require('hbs');
 const app = express();
 app.set('view engine', 'hbs');
 
+hbs.registerPartials(__dirname + '/views/partial')
 
 var bodyParser = require("body-parser");
 //const { Console } = require('console');
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
+
+app.get('/', (req, res) => {
+    res.render('login');
+})
+
+app.get('/home', (req, res) => {
+    res.render('main');
+})
+
 
 var adminController = require('./admin.js');
 app.use('/admin', adminController);
@@ -21,13 +34,6 @@ app.use('/trainer', adminController);
 var adminController = require('./trainee.js');
 app.use('/trainee', adminController);
 
-app.get('/', (req, res) => {
-    res.render('login');
-})
-
-app.get('/home', (req, res) => {
-    res.render('main');
-})
 
 
 /* Regarding Css */
