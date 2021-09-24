@@ -24,15 +24,17 @@
                 <h4>Update Trainee Account</h4>
 
                 <table>
-                    <form action="/doAddTraineeAccount" method="post">
+                    <form action="/doUpdateTraineeAccount" method="post">
+                    <td><input type="hidden" name="id" value="{{traineeDetail._id}}"></td>
+
                      <tr>
                         <td>Name : </td>
-                        <td><input type="text" name="txtTraineeName"> </td> 
+                        <td><input type="text" name="txtUpdateTraineeName" value="{{traineeDetail.name}}"> </td> 
                         <td style="color: brown;">{{errorMessage}}</td>
                     </tr>
                     <tr>
                         <td>Email : </td>
-                        <td><input type="text" name="txtTraineeEmail"> </td> 
+                        <td><input type="text" name="txtUpdateTraineeEmail" value="{{traineeDetail.email}}"> </td> 
                         <td style="color: brown;">{{errorMessage}}</td>
                     </tr>
 
@@ -40,21 +42,21 @@
 
                     <tr>
                         <td>Age : </td>
-                        <td><input type="text" name="txtTraineeAge"></td>
+                        <td><input type="text" name="txtUpdateTraineeAge" value="{{traineeDetail.age}}"></td>
                         <td  style="color: brown;">{{errorPrice}}</td>
 
                     </tr>
 
                      <tr>
                         <td>Date of Birth : </td>
-                        <td><input type="text" name="txtTraineeAge"></td>
+                        <td><input type="text" name="txtUpdateTraineeDoB" value="{{traineeDetail.DoB}}"></td>
                         <td  style="color: brown;">{{errorPrice}}</td>
 
                     </tr>
                     
                      <tr>
                         <td>Education : </td>
-                        <td><input type="text" name="txtTraineeEducation"></td>
+                        <td><input type="text" name="txtUpdateTraineeEducation" value="{{traineeDetail.education}}"></td>
                         <td  style="color: brown;">{{errorPrice}}</td>
 
                     </tr>

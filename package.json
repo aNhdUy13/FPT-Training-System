@@ -4,8 +4,10 @@
     "description": "",
     "main": "app.js",
     "dependencies": {
+        "db": "^3.3.1",
         "express": "^4.17.1",
         "hbs": "^4.1.2",
+        "mongo": "^0.1.0",
         "mongodb": "^4.1.2"
     },
     "devDependencies": {},
