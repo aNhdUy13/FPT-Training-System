@@ -10,7 +10,6 @@ var bodyParser = require("body-parser");
 //const { Console } = require('console');
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const dbHandler = require('./databaseHandler');
 
 
 app.get('/', (req, res) => {
@@ -43,4 +42,4 @@ app.use(express.static('public'));
 
 const PORT = 5000;
 app.listen(process.env.PORT || PORT);
-console.log("Console ATN web is running !");
+console.log("FPT Training web is running !");

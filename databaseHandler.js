@@ -10,5 +10,17 @@ async function getDBO() {
 
 
 /* ======== Staff Role ========*/
+async function createTraineeAccount(collectionName, emailTrainee, passwordTrainee, nameTrainee, ageTrainee, DoBTrainee, educationTrainee) {
+    const dbo = await getDBO();
+    var newTraineeAccount = {
+        email: emailTrainee,
+        password: passwordTrainee,
+        name: nameTrainee,
+        age: ageTrainee,
+        DoB: DoBTrainee,
+        education: educationTrainee
+    };
 
+    await dbo.collection(collectionName).insertOne(newTraineeAccount);
+}
 /* (END) Staff Role */
