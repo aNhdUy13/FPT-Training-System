@@ -54,10 +54,26 @@ app.post('/doAddTraineeAccount', async(req, res) => {
     var traineeDoB = req.body.txtTraineeDoB;
     var traineeEducation = req.body.txtTraineeEducation;
 
-    await dbHandler.createTraineeAccount("users", traineeEmail, traineePassword, traineeName,
-        traineeAge, traineeDoB, traineeEducation);
+    if (traineeName.trim().length < 5) {
+        res.render('staff/traineeManagement', { errorName: "Error : Name cannot lower than 5 " })
 
-    res.redirect('staff/traineeManagement');
+    } else if (traineeEmail.trim().length == 0) {
+
+        res.render('staff/traineeManagement', { errorEmail: "Error : Fill the email " })
+    } else if (traineePassword.trim().length == 0) {
+        res.render('staff/traineeManagement', { errorPassword: "Error : Fill the password " })
+    } else if (traineeAge.trim().length == 0 || isNaN(traineeAge) == true) {
+
+        res.render('staff/traineeManagement', { errorAge: "Error : Fill the age and it must be integer " })
+    } else if (traineeAge < 0) {
+        res.render('staff/traineeManagement', { errorAge: "Error : Age cannot < 0 " })
+    } else {
+        await dbHandler.createTraineeAccount("users", traineeEmail, traineePassword, traineeName,
+            traineeAge, traineeDoB, traineeEducation);
+
+        res.redirect('staff/traineeManagement');
+    }
+
 
 })
 
@@ -102,9 +118,9 @@ app.get('/deleteTraineeAccount', async(req, res) => {
 })
 
 app.post('/searchTraineeAccount', async(req, res) => {
-    const nameSearch = req.body.txtTraineeNameAgeSearch;
+    const traineeNameAgeSearch = req.body.txtTraineeNameAgeSearch;
 
-    const result = await dbHandler.searchTraineeAccount("users", nameSearch, nameSearch);
+    const result = await dbHandler.searchTraineeAccount("users", traineeNameAgeSearch);
 
     res.render('staff/traineeManagement', { viewAllTraineeAccount: result });
 })

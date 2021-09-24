@@ -74,13 +74,15 @@ async function doUpdateTraineeAccount(collectionName, Id, newValues) {
 
 }
 
-async function searchTraineeAccount(collectionName, nameSearch, ageSearch) {
+async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
     const dbo = await getDBO();
 
     // search gần đúng (var re = /\w+\s/g ; g = global ; )
     //const searchCondition = new RegExp(searchText, 'i') // i = case-insensitive (k phân biệt chữ hoa thường)
     //const result = await dbo.collection(collectionName).find({ name: nameSearch }).toArray();
-    const result = await dbo.collection(collectionName).find({ name: nameSearch }, { age: ageSearch }).toArray();
+    const result = await dbo.collection(collectionName).find({
+        $or: [{ name: traineeNameAgeSearch }, { age: traineeNameAgeSearch }]
+    }).toArray();
 
     return result;
 }
