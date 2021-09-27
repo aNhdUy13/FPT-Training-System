@@ -35,9 +35,7 @@ async function createTraineeAccount(collectionName, emailTrainee, passwordTraine
 
 async function viewAllTraineeAccount(collectionName) {
     const dbo = await getDBO();
-
-
-    const result = await dbo.collection(collectionName).find({}).toArray();
+    const result = await dbo.collection(collectionName).find({ role: 'trainee' }).toArray();
 
     return result;
 }
@@ -79,8 +77,11 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
     const dbo = await getDBO();
 
     // search gần đúng (var re = /\w+\s/g ; g = global ; )
-    //const searchCondition = new RegExp(searchText, 'i') // i = case-insensitive (k phân biệt chữ hoa thường)
+    //const searchCondition = new RegExp(collectionName, 'i') // i = case-insensitive (k phân biệt chữ hoa thường)
     //const result = await dbo.collection(collectionName).find({ name: nameSearch }).toArray();
+    // const result = await dbo.collection(collectionName).find({
+    //     $or: [{ name: new RegExp(traineeNameAgeSearch, 'i') }, { age: traineeNameAgeSearch }]
+    // }).toArray();
     const result = await dbo.collection(collectionName).find({
         $or: [{ name: traineeNameAgeSearch }, { age: traineeNameAgeSearch }]
     }).toArray();
