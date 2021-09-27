@@ -149,6 +149,7 @@ app.post('/searchCourseCategory', async(req, res) => {
 
     res.render('staff/CourseCategory', { viewAllCourseCategory: result });
 })
+// Hoang
 
 const PORT = 5000;
 app.listen(process.env.PORT || PORT);
