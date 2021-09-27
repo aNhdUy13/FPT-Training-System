@@ -15,6 +15,7 @@ async function getDBO() {
 
 
 /* ======== Staff Role ========*/
+// Duy anh
 async function createTraineeAccount(collectionName, emailTrainee, passwordTrainee, nameTrainee,
     ageTrainee, DoBTrainee, educationTrainee) {
 
@@ -86,6 +87,54 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
 
     return result;
 }
+// Duy Anh
+
+// Hoang
+async function insertCourseCategory(collectionName, data){
+    const dbo = await getDBO();
+    await dbo.collection(collectionName).insertOne(data);
+
+}
+async function searchCourseCategory(collectionName,nameCourseCate){
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({name: nameCourseCate}).toArray();
+
+    return result;
+}
+async function viewAllCourseCategory(collectionName) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({}).toArray();
+    return result;
+}
+async function deleteCourseCategory(collectionName,Id){
+    const dbo = await getDBO();
+    var ObectID = require('mongodb').ObjectID;
+
+    const condition = { "_id": ObectID(Id) };
+
+    await dbo.collection(collectionName).deleteOne(condition); 
+}
+async function updateCourseCategory(collectionName,Id){
+    const dbo = await getDBO();
+
+    var ObectID = require('mongodb').ObjectID;
+    const condition = { "_id": ObectID(Id) };
+
+    const DataToEdit = await dbo.collection(collectionName).findOne(condition);
+    return DataToEdit;
+}
+async function doUpdateCourseCategory(collectionName, Id, newData) {
+    const dbo = await getDBO();
+
+    var ObectID = require('mongodb').ObjectID;
+
+    const condition = { "_id": ObectID(Id) };
+
+    await dbo.collection(collectionName).updateOne(condition, newData);
+
+}
+
+//Hoang
 /* (END) Staff Role */
 
 
@@ -95,5 +144,11 @@ module.exports = {
     deleteTraineeAccount,
     updateTraineeAccount,
     doUpdateTraineeAccount,
-    searchTraineeAccount
+    searchTraineeAccount,
+    insertCourseCategory,
+    searchCourseCategory,
+    viewAllCourseCategory,
+    deleteCourseCategory,
+    updateCourseCategory,
+    doUpdateCourseCategory
 }

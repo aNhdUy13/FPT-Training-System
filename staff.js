@@ -43,6 +43,11 @@ router.get('/updateTraineeAccount', (req, res) => {
 //     await dbHandler.deleteTraineeAccount("users", id);
 //     res.redirect('/traineeManagement')
 // })
+router.get('/CourseCategory', async(req, res) => {
+    const result = await dbHandler.viewAllCourseCategory("courseCategory")
+
+    res.render('staff/CourseCategory', { viewAllCourseCategory: result });
+})
 
 
 /* Regarding Css */

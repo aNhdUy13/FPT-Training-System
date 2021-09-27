@@ -44,7 +44,7 @@ app.use(express.static('public'));
 
 /* (End) Regarding Css */
 
-
+// Duy Anh
 app.post('/doAddTraineeAccount', async(req, res) => {
 
     var traineeEmail = req.body.txtTraineeEmail;
@@ -123,6 +123,31 @@ app.post('/searchTraineeAccount', async(req, res) => {
     const result = await dbHandler.searchTraineeAccount("users", traineeNameAgeSearch);
 
     res.render('staff/traineeManagement', { viewAllTraineeAccount: result });
+})
+// Duy Anh
+
+// Hoang
+app.post('/addCourseCategory', async(req, res) => {
+    const nameCourseCate = req.body.txtNameCourseCategory;
+    const descriptionCourseCate = req.body.txtCourseDescription;
+    const dataCourseCategory = {name: nameCourseCate, description: descriptionCourseCate}
+    await dbHandler.insertCourseCategory("courseCategory", dataCourseCategory);
+
+    res.redirect('staff/CourseCategory');
+
+})
+app.get('/deleteCourseCategory', async(req, res) => {
+    const id = req.query.id;
+
+    await dbHandler.deleteCourseCategory("courseCategory", id);
+    res.redirect('staff/CourseCategory')
+})
+app.post('/searchCourseCategory', async(req, res) => {
+    const nameCourseCate = req.body.txtNameCourseCategory;
+
+    const result = await dbHandler.searchCourseCategory("courseCategory", nameCourseCate);
+
+    res.render('staff/CourseCategory', { viewAllCourseCategory: result });
 })
 
 const PORT = 5000;

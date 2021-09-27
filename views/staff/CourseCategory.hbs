@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Category</title>
+    <link rel="stylesheet" href="css/normal_layout.css" type="text/css">
+    <link rel="stylesheet" href="css/staff.css" type="text/css">
+
+</head>
+
+<body>
+</body>
+<div class="container ">
+
+    {{> header}}
+
+    <!-- Content -->
+    <div class="main_Content">
+
+        <div class="topTraineeLayout">
+            <div class="tableAddTrainee">
+                <h4>Add Course Category</h4>
+
+                <table>
+                    <form  action="/addCourseCategory" method="post">
+                        <tr>
+                            <td>Name : </td>
+                            <td><input type="text" name="txtNameCourseCategory"> </td> 
+                        </tr>
+                        <tr>
+                            <td>Description : </td>
+                            <td><input type="text" name="txtCourseDescription"> </td> 
+                        </tr>
+                        <td></td>
+                            <td><input type="submit" value="Insert" class="insertButton"></td>
+                    </form>
+                </table>
+            </div>
+        </div>
+
+        <div class="bottomTraineeLayout">
+            <form method="POST" action="/searchCourseCategory">
+                <input class="traineeSearchBar" type="text" name="txtNameCourseCategory" style="width: 350px;">
+                <input type="submit" value="Search">          
+            </form>
+
+             <table border="1" cellspacing ="0 " cellpadding="15">
+                <thead>
+                    <tr>
+                            <th>Name</th>
+                            <th>Description</th>                         
+                    </tr>
+                </thead>
+                    <tbody>
+                        {{#each viewAllCourseCategory}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{description}}</td>
+                                <td>
+                                    <button>
+                                        <a href="/deleteCourseCategory?id={{_id}}" onclick="return confirm('Are You Sure to Delete ?')">
+                                                Delete
+                                        </a>
+                                    </button>
+                                </td>
+                                <td>
+                                        <button>
+                                            <a href="/updateCourseCategory?id={{_id}}">
+                                                Update
+                                            </a>
+                                    </button>
+                                </td>
+                            
+                            </tr>
+                        {{/each }}
+
+            </tbody>
+           </table>
+        </div>
+    </div>
+
+    <!-- (End) Content -->
+
+    {{> footer}}
+
+</div>
+
+
+</html>
