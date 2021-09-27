@@ -7,6 +7,9 @@ router.get('/', (req, res) => {
     res.render('staff/staffHome');
 })
 
+/**
+ * Nguyen DUy Anh
+ */
 router.get('/traineeManagement', async(req, res) => {
     const result = await dbHandler.viewAllTraineeAccount("users")
 
@@ -43,6 +46,12 @@ router.get('/updateTraineeAccount', (req, res) => {
 //     await dbHandler.deleteTraineeAccount("users", id);
 //     res.redirect('/traineeManagement')
 // })
+
+/**
+ *  (END) Nguyen DUy Anh
+ */
+
+
 
 
 /* Regarding Css */

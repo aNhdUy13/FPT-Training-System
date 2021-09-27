@@ -34,9 +34,7 @@ async function createTraineeAccount(collectionName, emailTrainee, passwordTraine
 
 async function viewAllTraineeAccount(collectionName) {
     const dbo = await getDBO();
-
-
-    const result = await dbo.collection(collectionName).find({}).toArray();
+    const result = await dbo.collection(collectionName).find({ role: 'trainee' }).toArray();
 
     return result;
 }
