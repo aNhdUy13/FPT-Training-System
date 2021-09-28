@@ -24,16 +24,16 @@
                 <h4>Update Course Category</h4>
 
                 <table>
-                    <form action="/doUpdateTraineeAccount" method="post">
-                    <td><input type="hidden" name="id" value="{{traineeDetail._id}}"></td>
+                    <form action="../staff/doupdateCourseCategory" method="post">
+                    <td><input type="hidden" name="id" value="{{courseCategory._id}}"></td>
 
                      <tr>
                         <td>Name : </td>
-                        <td><input type="text" name="txtUpdateTraineeName" value="{{traineeDetail.name}}"> </td> 
+                        <td><input type="text" name="txtNameCourseCategory" value="{{courseCategory.name}}"> </td> 
                     </tr>
                     <tr>
                         <td>Description : </td>
-                        <td><input type="text" name="txtUpdateTraineeEmail" value="{{traineeDetail.email}}"> </td> 
+                        <td><input type="text" name="txtDesCourseCategory" value="{{courseCategory.description}}"> </td> 
                     </tr>
                     <tr>
                         <td></td>

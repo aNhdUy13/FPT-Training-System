@@ -45,29 +45,7 @@ app.use(express.static('public'));
 /* (End) Regarding Css */
 
 // Hoang
-app.post('/addCourseCategory', async(req, res) => {
-    const nameCourseCate = req.body.txtNameCourseCategory;
-    const descriptionCourseCate = req.body.txtCourseDescription;
-    const dataCourseCategory = { name: nameCourseCate, description: descriptionCourseCate }
-    await dbHandler.insertCourseCategory("courseCategory", dataCourseCategory);
 
-    res.redirect('staff/CourseCategory');
-
-})
-app.get('/deleteCourseCategory', async(req, res) => {
-    const id = req.query.id;
-
-    await dbHandler.deleteCourseCategory("courseCategory", id);
-    res.redirect('staff/CourseCategory')
-})
-app.post('/searchCourseCategory', async(req, res) => {
-        const nameCourseCate = req.body.txtNameCourseCategory;
-
-        const result = await dbHandler.searchCourseCategory("courseCategory", nameCourseCate);
-
-        res.render('staff/CourseCategory', { viewAllCourseCategory: result });
-    })
-    // Hoang
 
 const PORT = 5000;
 app.listen(process.env.PORT || PORT);

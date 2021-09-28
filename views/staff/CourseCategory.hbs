@@ -25,7 +25,7 @@
                 <h4>Add Course Category</h4>
 
                 <table>
-                    <form  action="/addCourseCategory" method="post">
+                    <form  action="../staff/addCourseCategory" method="post">
                         <tr>
                             <td>Name : </td>
                             <td><input type="text" name="txtNameCourseCategory"> </td> 
@@ -42,7 +42,7 @@
         </div>
 
         <div class="bottomTraineeLayout">
-            <form method="POST" action="/searchCourseCategory">
+            <form method="POST" action="../staff/searchCourseCategory">
                 <input class="traineeSearchBar" type="text" name="txtNameCourseCategory" style="width: 350px;">
                 <input type="submit" value="Search">          
             </form>
@@ -61,14 +61,14 @@
                                 <td>{{description}}</td>
                                 <td>
                                     <button>
-                                        <a href="/deleteCourseCategory?id={{_id}}" onclick="return confirm('Are You Sure to Delete ?')">
+                                        <a href="../staff/deleteCourseCategory?id={{_id}}" onclick="return confirm('Are You Sure to Delete ?')">
                                                 Delete
                                         </a>
                                     </button>
                                 </td>
                                 <td>
                                         <button>
-                                            <a href="/updateCourseCategory?id={{_id}}">
+                                            <a href="../staff/updateCourseCategory?id={{_id}}">
                                                 Update
                                             </a>
                                     </button>

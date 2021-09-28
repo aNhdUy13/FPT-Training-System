@@ -102,16 +102,53 @@ router.post('/searchTraineeAccount', async(req, res) => {
 /**
  *  (END) Nguyen DUy Anh
  */
+// Hoang
+router.post('/addCourseCategory', async(req, res) => {
+    const nameCourseCate = req.body.txtNameCourseCategory;
+    const descriptionCourseCate = req.body.txtCourseDescription;
+    const dataCourseCategory = { name: nameCourseCate, description: descriptionCourseCate }
+    await dbHandler.insertCourseCategory("courseCategory", dataCourseCategory);
 
+    res.redirect('CourseCategory');
 
+})
+router.get('/deleteCourseCategory', async(req, res) => {
+    const id = req.query.id;
+
+    await dbHandler.deleteCourseCategory("courseCategory", id);
+    res.redirect('CourseCategory')
+})
+router.post('/searchCourseCategory', async(req, res) => {
+        const nameCourseCate = req.body.txtNameCourseCategory;
+
+        const result = await dbHandler.searchCourseCategory("courseCategory", nameCourseCate);
+
+        res.render('staff/CourseCategory', { viewAllCourseCategory: result });
+    })
 
 router.get('/CourseCategory', async(req, res) => {
     const result = await dbHandler.viewAllCourseCategory("courseCategory")
 
     res.render('staff/CourseCategory', { viewAllCourseCategory: result });
 })
+router.get('/updateCourseCategory', async(req, res) => {
 
+    const id = req.query.id;
 
+    var editCourseCategory = await dbHandler.updateCourseCategory("courseCategory", id);
+    res.render('staff/updateCourseCategory', { courseCategory: editCourseCategory })
+
+})
+router.post('/doupdateCourseCategory', async(req, res) => {
+    const id = req.body.id;
+    const nameCourseCate= req.body.txtNameCourseCategory;
+    const desCourseCate= req.body.txtDesCourseCategory;
+
+    const editCourseCategory = {$set:{name: nameCourseCate, description: desCourseCate}};
+    await dbHandler.doUpdateCourseCategory("courseCategory",id, editCourseCategory);
+    res.redirect('CourseCategory') 
+})
+// Hoang END
 
 /* Regarding Css */
 router.use(express.static('public'));
