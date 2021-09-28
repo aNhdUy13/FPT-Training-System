@@ -25,7 +25,7 @@
                 <h4>Add Trainee Account</h4>
 
                 <table>
-                    <form  action="/doAddTraineeAccount" method="post">
+                    <form  action="../staff/doAddTraineeAccount" method="post">
                         <tr>
                             <td>Name : </td>
                             <td><input type="text" name="txtTraineeName"> </td> 
@@ -74,7 +74,7 @@
         </div>
 
         <div class="bottomTraineeLayout">
-            <form method="POST" action="/searchTraineeAccount">
+            <form method="POST" action="../staff/searchTraineeAccount">
                 <input class="traineeSearchBar" type="text" name="txtTraineeNameAgeSearch" style="width: 350px;">
                 <input type="submit" value="Search">          
             </form>
@@ -102,14 +102,14 @@
 
                                 <td>
                                     <button>
-                                        <a href="/deleteTraineeAccount?id={{_id}}" onclick="return confirm('Are You Sure to Delete ?')">
+                                        <a href="../staff/deleteTraineeAccount?id={{_id}}" onclick="return confirm('Are You Sure to Delete ?')">
                                                 Delete
                                         </a>
                                     </button>
                                 </td>
                                 <td>
                                         <button>
-                                            <a href="/updateTraineeAccount?id={{_id}}">
+                                            <a href="../staff/updateTraineeAccount?id={{_id}}">
                                                 Update
                                             </a>
                                     </button>
