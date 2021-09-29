@@ -15,7 +15,6 @@ async function getDBO() {
 
 
 /* ======== Staff Role ========*/
-// Duy anh
 async function createTraineeAccount(collectionName, emailTrainee, passwordTrainee, nameTrainee,
     ageTrainee, DoBTrainee, educationTrainee) {
 
@@ -40,7 +39,7 @@ async function viewAllTraineeAccount(collectionName) {
     return result;
 }
 
-async function deleteTraineeAccount(collectionName, Id) {
+async function deleteFunction(collectionName, Id) {
     const dbo = await getDBO();
 
     var ObectID = require('mongodb').ObjectID;
@@ -51,7 +50,7 @@ async function deleteTraineeAccount(collectionName, Id) {
     await dbo.collection(collectionName).deleteOne(condition); //await đợi đến khi kết thúc
 }
 
-async function updateTraineeAccount(collectionName, Id) {
+async function updateFunction(collectionName, Id) {
     const dbo = await getDBO();
 
     var ObectID = require('mongodb').ObjectID;
@@ -62,7 +61,7 @@ async function updateTraineeAccount(collectionName, Id) {
     return traineeAccountToEdit;
 }
 
-async function doUpdateTraineeAccount(collectionName, Id, newValues) {
+async function doUpdateFunction(collectionName, Id, newValues) {
     const dbo = await getDBO();
 
     var ObectID = require('mongodb').ObjectID;
@@ -88,9 +87,7 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
 
     return result;
 }
-// Duy Anh
 
-// Hoang
 async function insertCourseCategory(collectionName, data){
     const dbo = await getDBO();
     await dbo.collection(collectionName).insertOne(data);
@@ -102,54 +99,26 @@ async function searchCourseCategory(collectionName,nameCourseCate){
 
     return result;
 }
-async function viewAllCourseCategory(collectionName) {
+async function viewAll(collectionName) {
     const dbo = await getDBO();
     const result = await dbo.collection(collectionName).find({}).toArray();
     return result;
 }
-async function deleteCourseCategory(collectionName,Id){
-    const dbo = await getDBO();
-    var ObectID = require('mongodb').ObjectID;
 
-    const condition = { "_id": ObectID(Id) };
 
-    await dbo.collection(collectionName).deleteOne(condition); 
-}
-async function updateCourseCategory(collectionName,Id){
-    const dbo = await getDBO();
 
-    var ObectID = require('mongodb').ObjectID;
-    const condition = { "_id": ObectID(Id) };
-
-    const DataToEdit = await dbo.collection(collectionName).findOne(condition);
-    return DataToEdit;
-}
-async function doUpdateCourseCategory(collectionName, Id, newData) {
-    const dbo = await getDBO();
-
-    var ObectID = require('mongodb').ObjectID;
-
-    const condition = { "_id": ObectID(Id) };
-
-    await dbo.collection(collectionName).updateOne(condition, newData);
-
-}
-
-//Hoang
 /* (END) Staff Role */
 
 
 module.exports = {
     createTraineeAccount,
     viewAllTraineeAccount,
-    deleteTraineeAccount,
-    updateTraineeAccount,
-    doUpdateTraineeAccount,
+    deleteFunction,
+    updateFunction,
+    doUpdateFunction,
     searchTraineeAccount,
     insertCourseCategory,
     searchCourseCategory,
-    viewAllCourseCategory,
-    deleteCourseCategory,
-    updateCourseCategory,
-    doUpdateCourseCategory
+    viewAll,
+    
 }

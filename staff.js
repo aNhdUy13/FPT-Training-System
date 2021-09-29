@@ -54,7 +54,7 @@ router.get('/updateTraineeAccount', async(req, res) => {
 
     const id = req.query.id;
 
-    var traineeAccountToEdit = await dbHandler.updateTraineeAccount("users", id);
+    var traineeAccountToEdit = await dbHandler.updateFunction("users", id);
     res.render('staff/updateTraineeAccount', { traineeDetail: traineeAccountToEdit })
 
 })
@@ -78,7 +78,7 @@ router.post('/doUpdateTraineeAccount', async(req, res) => {
     };
 
 
-    await dbHandler.doUpdateTraineeAccount("users", id, newValue);
+    await dbHandler.doUpdateFunction("users", id, newValue);
 
     res.redirect('traineeManagement')
 })
@@ -86,7 +86,7 @@ router.post('/doUpdateTraineeAccount', async(req, res) => {
 router.get('/deleteTraineeAccount', async(req, res) => {
     const id = req.query.id;
 
-    await dbHandler.deleteTraineeAccount("users", id);
+    await dbHandler.deleteFunction("users", id);
     res.redirect('traineeManagement')
 })
 
@@ -102,7 +102,8 @@ router.post('/searchTraineeAccount', async(req, res) => {
 /**
  *  (END) Nguyen DUy Anh
  */
-// Hoang
+// Hoang - Course Category
+
 router.post('/addCourseCategory', async(req, res) => {
     const nameCourseCate = req.body.txtNameCourseCategory;
     const descriptionCourseCate = req.body.txtCourseDescription;
@@ -115,7 +116,7 @@ router.post('/addCourseCategory', async(req, res) => {
 router.get('/deleteCourseCategory', async(req, res) => {
     const id = req.query.id;
 
-    await dbHandler.deleteCourseCategory("courseCategory", id);
+    await dbHandler.deleteFunction("courseCategory", id);
     res.redirect('CourseCategory')
 })
 router.post('/searchCourseCategory', async(req, res) => {
@@ -127,7 +128,7 @@ router.post('/searchCourseCategory', async(req, res) => {
     })
 
 router.get('/CourseCategory', async(req, res) => {
-    const result = await dbHandler.viewAllCourseCategory("courseCategory")
+    const result = await dbHandler.viewAll("courseCategory")
 
     res.render('staff/CourseCategory', { viewAllCourseCategory: result });
 })
@@ -135,7 +136,7 @@ router.get('/updateCourseCategory', async(req, res) => {
 
     const id = req.query.id;
 
-    var editCourseCategory = await dbHandler.updateCourseCategory("courseCategory", id);
+    var editCourseCategory = await dbHandler.updateFunction("courseCategory", id);
     res.render('staff/updateCourseCategory', { courseCategory: editCourseCategory })
 
 })
@@ -145,10 +146,41 @@ router.post('/doupdateCourseCategory', async(req, res) => {
     const desCourseCate= req.body.txtDesCourseCategory;
 
     const editCourseCategory = {$set:{name: nameCourseCate, description: desCourseCate}};
-    await dbHandler.doUpdateCourseCategory("courseCategory",id, editCourseCategory);
+    await dbHandler.doUpdateFunction("courseCategory",id, editCourseCategory);
     res.redirect('CourseCategory') 
 })
+// Hoang - Course
+router.post('/addCourse', async(req, res) => {
+    const nameCourse = req.body.txtNameCourse;
+    const courseCategory = req.body.txtCourseCategory;
+    const descriptionCourse = req.body.txtCourseDescription;
+    const dataCourseCategory = { name: nameCourse,courseCategory: courseCategory, description: descriptionCourse}
+    await dbHandler.insertCourseCategory("course", dataCourseCategory);
+
+    res.redirect('Course');
+
+})
+router.post('/searchCourse', async(req, res) => {
+    const nameCourse = req.body.txtNameCourse;
+
+    const result = await dbHandler.searchCourseCategory("course", nameCourse);
+
+    res.render('staff/Course', { viewAll: result });
+})
+router.get('/deleteCourse', async(req, res) => {
+    const id = req.query.id;
+
+    await dbHandler.deleteFunction("course", id);
+    res.redirect('Course')
+})
+router.get('/Course', async(req, res) => {
+    const result = await dbHandler.viewAll("course")
+
+    res.render('staff/Course', { viewAll: result });
+})
 // Hoang END
+
+
 
 /* Regarding Css */
 router.use(express.static('public'));
