@@ -17,7 +17,8 @@ async function getDBO() {
 
     if(results!=null)
         return true;
-    else return false;
+    else 
+        return false;
 }
 /* ======== Admin  Role ========*/
 
