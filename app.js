@@ -15,10 +15,8 @@ const dbHandler = require('./databaseHandler');
 
 
 
-
-app.get('/', (req, res) => {
-    res.render('login');
-})
+var adminController = require('./login.js');
+app.use('/', adminController);
 
 app.get('/home', (req, res) => {
     res.render('main');
@@ -49,4 +47,4 @@ app.use(express.static('public'));
 
 const PORT = 5000;
 app.listen(process.env.PORT || PORT);
-console.log("FPT Training web is running !");
+console.log("FPT Training web is running !   Example app listening at http://localhost:5000 ");

@@ -8,6 +8,17 @@ async function getDBO() {
     return dbo;
 }
 
+/* Login  thang beo    */
+
+    async function checkUser(nameIn,passwordIn){
+    const dbo = await getDBO();
+    const results = await dbo.collection("users").
+        findOne({$and:[{email:nameIn},{password:passwordIn}]});
+
+    if(results!=null)
+        return true;
+    else return false;
+}
 /* ======== Admin  Role ========*/
 
 /* (END) Admin Role */
@@ -151,5 +162,6 @@ module.exports = {
     viewAllCourseCategory,
     deleteCourseCategory,
     updateCourseCategory,
-    doUpdateCourseCategory
+    doUpdateCourseCategory,
+    checkUser
 }
