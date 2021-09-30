@@ -1,19 +1,17 @@
-* {
+*{
     padding: 0;
     margin: 0;
     font-family: sans-serif;
 }
-
-.hero {
+.hero{
     height: 100%;
     width: 100%;
     background-image: url(https://www.gre.ac.uk/__data/assets/image/0025/5767/gr-domes-night-01.jpg);
     background-position: center;
     background-size: cover;
-    position: absolute;
+    position: absolute; 
 }
-
-.form-box {
+.form-box{
     width: 380px;
     height: 480px;
     position: relative;
@@ -21,56 +19,33 @@
     background: #fff;
     padding: 5px;
 }
-
-.button-box {
-    width: 110px;
+.button-box{
+    width: 150px;
     margin: 35px auto;
     position: relative;
-    box-shadow: 0 0 20px 9px #ff61241f;
-    border-radius: 30px;
 }
-
-.toggle-btn {
-    padding: 10px 30px;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    outline: none;
+.toggle-btn{
+    padding: 10px 10px;
+    width: 150px;
+    height: 50px;
     position: relative;
 }
-
-#btn {
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 120px;
-    height: 100%;
-    background: linear-gradient(to right, #636ce4, #859cda);
-    border-radius: 30px;
-    transition: .5s;
-}
-
-.social-icons {
+.social-icons{
     margin: 30px auto;
     text-align: center;
 }
-
-.social-icons img {
+.social-icons img{
     width: 30px;
     margin: 0 12px;
-    box-shadow: 0 0 20px 0 #7f7f7f3d;
-    cursor: pointer;
     border-radius: 50%;
 }
-
-.input-group {
+.input-group{
     top: 180px;
     position: absolute;
     width: 280px;
     transition: .5s;
 }
-
-.input-field {
+.input-field{
     width: 100%;
     padding: 10px 0;
     margin: 5px 50px;
@@ -81,26 +56,24 @@
     outline: none;
     background: transparent;
 }
-
-.submit-btn {
+.submit-btn{
     width: 85%;
     padding: 10px 30px;
     cursor: pointer;
     display: block;
     margin: auto 80px;
-    background: linear-gradient(to right, #636ce4, #859cda);
+    background: linear-gradient(to right, #636ce4,#859cda);
     border: 0;
     outline: none;
     border-radius: 30px;
 }
-
-.check-box {
+.check-box{
     margin: 30px 6px 30px 50px;
 }
-
-span {
+span{
     color: #777;
     font-size: 12px;
     bottom: 68px;
     position: absolute;
 }
+
