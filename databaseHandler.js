@@ -132,5 +132,6 @@ module.exports = {
     insertCourseCategory,
     searchCourseCategory,
     viewAll,
+    checkUser
     
 }
