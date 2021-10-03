@@ -144,7 +144,6 @@ router.post('/doupdateCourseCategory', async(req, res) => {
     const id = req.body.id;
     const nameCourseCate= req.body.txtNameCourseCategory;
     const desCourseCate= req.body.txtDesCourseCategory;
-
     const editCourseCategory = {$set:{name: nameCourseCate, description: desCourseCate}};
     await dbHandler.doUpdateFunction("courseCategory",id, editCourseCategory);
     res.redirect('CourseCategory') 
@@ -154,8 +153,8 @@ router.post('/addCourse', async(req, res) => {
     const nameCourse = req.body.txtNameCourse;
     const courseCategory = req.body.txtCourseCategory;
     const descriptionCourse = req.body.txtCourseDescription;
-    const dataCourseCategory = { name: nameCourse,courseCategory: courseCategory, description: descriptionCourse}
-    await dbHandler.insertCourseCategory("course", dataCourseCategory);
+    const dataCourse = { name: nameCourse,courseCategory: courseCategory, description: descriptionCourse}
+    await dbHandler.insertCourseCategory("course", dataCourse);
 
     res.redirect('Course');
 
@@ -175,9 +174,32 @@ router.get('/deleteCourse', async(req, res) => {
 })
 router.get('/Course', async(req, res) => {
     const result = await dbHandler.viewAll("course")
+    const getCategory = await dbHandler.getCategory("courseCategory")
 
-    res.render('staff/Course', { viewAll: result });
+    res.render('staff/Course', { viewAll: result, getAllCategory: getCategory });
 })
+router.get('/updateCourse', async(req, res) => {
+
+    const id = req.query.id;
+    var editCourse = await dbHandler.updateFunction("course", id);
+
+    const result = await dbHandler.viewAll("course")
+    const getCategory = await dbHandler.getCategory("courseCategory")
+
+    res.render('staff/updateCourse', { course: editCourse, viewAll: result, getAll: getCategory })
+
+})
+router.post('/doupdateCourse', async(req, res) => {
+    const id = req.body.id;
+    const nameCourse= req.body.txtNameCourse;
+    const courseCategory = req.body.txtCourseCategory;
+    const desCourse= req.body.txtDesCourse;
+
+    const editCourse = {$set:{name: nameCourse,courseCategory: courseCategory, description: desCourse}};
+    await dbHandler.doUpdateFunction("course",id, editCourse);
+    res.redirect('Course') 
+})
+
 // Hoang END
 
 
