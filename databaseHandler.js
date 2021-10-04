@@ -10,14 +10,14 @@ async function getDBO() {
 
 /* Login  thang beo    */
 
-    async function checkUser(nameIn,passwordIn){
+async function checkUser(nameIn, passwordIn) {
     const dbo = await getDBO();
     const results = await dbo.collection("users").
-        findOne({$and:[{email:nameIn},{password:passwordIn}]});
+    findOne({ $and: [{ email: nameIn }, { password: passwordIn }] });
 
-    if(results!=null)
+    if (results != null)
         return true;
-    else 
+    else
         return false;
 }
 /* ======== Admin  Role ========*/
@@ -100,14 +100,14 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
     return result;
 }
 
-async function insertCourseCategory(collectionName, data){
+async function insertCourseCategory(collectionName, data) {
     const dbo = await getDBO();
     await dbo.collection(collectionName).insertOne(data);
 
 }
-async function searchCourseCategory(collectionName,nameCourseCate){
+async function searchCourseCategory(collectionName, nameCourseCate) {
     const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({name: nameCourseCate}).toArray();
+    const result = await dbo.collection(collectionName).find({ name: nameCourseCate }).toArray();
 
     return result;
 }
@@ -116,7 +116,7 @@ async function viewAll(collectionName) {
     const result = await dbo.collection(collectionName).find({}).toArray();
     return result;
 }
-async function getCategory(collectionName){
+async function getCategory(collectionName) {
     const dbo = await getDBO();
     const result = await dbo.collection(collectionName).find({}).toArray();
     return result;
