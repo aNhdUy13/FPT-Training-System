@@ -206,8 +206,14 @@ router.post('/doupdateCourse', async(req, res) => {
 
 // Tan - assign Trainer, Trainee a Course
 
-router.get('/Assign', async(req, res) => {
-    res.render('staff/Assign')
+router.get('/AssignTrainee', async(req, res) => {
+
+    res.render('staff/AssignTrainee')
+})
+
+router.get('/AssignTrainee', async(req, res) => {
+
+    res.render('staff/AssignTrainee')
 })
 
 /* Regarding Css */
