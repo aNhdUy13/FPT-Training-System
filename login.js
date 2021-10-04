@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 router.post('/doLogin',async(req,res)=>{
     var nameInput = req.body.txtUser;
     var passInput = req.body.txtPassword;
-    const found = dbHandler.checkUser(nameInput,passInput);
+    const found = await dbHandler.checkUser(nameInput,passInput);
     if(found){
         res.render('testlogin')
     }

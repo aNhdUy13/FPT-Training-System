@@ -32,16 +32,13 @@
                         </tr>
                         <tr>
                             <td>Course Category: </td>
-                            <form action="../staff/CourseCategory" method="get">
-                                  <td>
-                                <select>
-                                    {{#each viewAllCourseCategory}}
-                                        <option value="{{name}}" name ="txtCourseCategory"></option>
+                            <td>
+                                <select name="txtCourseCategory">
+                                    {{#each getAllCategory}}
+                                        <option value="{{name}}">{{name}}</option>
                                     {{/each}}
                                 </select>
-                            </td>
-                            </form>
-                          
+                            </td>                         
                         </tr>
                         <tr>
                             <td>Description : </td>

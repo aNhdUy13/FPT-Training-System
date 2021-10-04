@@ -116,6 +116,11 @@ async function viewAll(collectionName) {
     const result = await dbo.collection(collectionName).find({}).toArray();
     return result;
 }
+async function getCategory(collectionName){
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({}).toArray();
+    return result;
+}
 
 
 
@@ -132,6 +137,11 @@ module.exports = {
     insertCourseCategory,
     searchCourseCategory,
     viewAll,
+<<<<<<< HEAD
     checkUser
 
+=======
+    checkUser,
+    getCategory
+>>>>>>> fe88dae136ff6b0f48afc71280155da8ad10c38a
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Category</title>
+    <link rel="stylesheet" href="css/normal_layout.css" type="text/css">
+    <link rel="stylesheet" href="css/staff.css" type="text/css">
+
+</head>
+
+<body>
+</body>
+<div class="container ">
+
+    {{> header}}
+
+    <!-- Content -->
+    <div class="main_Content">
+        <div>.</div>
+        <div class="updateTraineeAccount">
+                <h4>Update Course</h4>
+
+                <table>
+                    <form action="../staff/doupdateCourse" method="post">
+                    <td><input type="hidden" name="id" value="{{course._id}}"></td>
+
+                     <tr>
+                        <td>Name : </td>
+                        <td><input type="text" name="txtNameCourse" value="{{course.name}}"> </td> 
+                    </tr>
+                    <tr>
+                        <td>Course Category :</td>
+                        <td>
+                            <select name="txtCourseCategory">
+
+                                {{#each getAll}}
+                                        <option value="{{name}}" selected >{{name}}</option>                                      
+                                    
+                                    
+                                {{/each}}
+                                
+                                
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description : </td>
+                        <td><input type="text" name="txtDesCourse" value="{{course.description}}"> </td> 
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Update" class="updateButton"></td>
+
+                    </tr>
+                </form>
+                </table>
+
+        </div>
+
+    </div>
+
+    <!-- (End) Content -->
+
+    {{> footer}}
+
+</div>
+
+
+</html>
