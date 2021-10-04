@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Assign Course Page </title>
+    <title> Assign Page </title>
     <link rel="stylesheet" href="css/normal_layout.css" type="text/css">
     <link rel="stylesheet" href="css/staff.css" type="text/css">
 </head>
@@ -12,15 +12,46 @@
 </body>
 <div class = "container "> 
 
-{{> header}}
+    {{> header}}
 
-    <div class = "main_Content">
-        <div class = "topTraineeLayout">
-            <div class = "tableAssignCourse">
+    <div class="main_Content"></div>
+
+        <div class="topTraineeLayout">
+            <div class="tableAssignCourse">
                 <h4>Assign Course</h4>
+                <table>
+                    <form action="../staff/AssignTrainee" method="POST">
+                        <tr>
+                            <td>Trainee's Name: </td>
+                            <td>
+                                <select name="txtTraineeName">
+                                    <option selected> Select a trainee</option>
+                                    {{#each getAllTrainee}}
+                                        <option value="{{name}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Course's Name: </td>
+                            <td>
+                                <select name="txtNameCourse">
+                                    <option selected> Select a course</option>
+                                    {{#each getAllCategory}}
+                                        <option value="{{name}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                        </tr>
+                        <td></td>
+                        <td><input type="submit" value="Insert" class="insertButton">></td>
+                    </form>
+                </table>
+
             </div>
         </div>
-    </div>
+
+    {{> footer}}
 
 </div>
 
