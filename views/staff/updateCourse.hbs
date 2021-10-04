@@ -34,15 +34,12 @@
                     <tr>
                         <td>Course Category :</td>
                         <td>
-                            <select name="txtCourseCategory">
-
+                            <select name="txtCourseCategory">  
+                                 <option value="{{course.courseCategory}}" selected>{{course.courseCategory}}</option>                                                        
                                 {{#each getAll}}
-                                        <option value="{{name}}" selected >{{name}}</option>                                      
-                                    
-                                    
+                                        <option value="{{name}}" >{{name}}</option>                                                                                                             
                                 {{/each}}
-                                
-                                
+                                                                
                             </select>
                         </td>
                     </tr>
