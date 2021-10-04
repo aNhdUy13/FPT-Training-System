@@ -204,6 +204,9 @@ router.post('/doupdateCourse', async(req, res) => {
 
 // Hoang END
 
+// Tan - assign Trainer, Trainee a Course
+
+    
 
 
 /* Regarding Css */
