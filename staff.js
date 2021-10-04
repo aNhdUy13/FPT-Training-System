@@ -205,20 +205,10 @@ router.post('/doupdateCourse', async(req, res) => {
 // Hoang END
 
 // Tan - assign Trainer, Trainee a Course
-router.get('/AssignTrainee', async(req, res) => {
-    const result = await dbHandler.viewAllTraineeAccount("users")
-    const getTraineeName = await dbHandler.getTraineeName("users")
 
-    res.render('staff/AssignHome', { viewAllTraineeAccount: result, getAllTrainee: getTraineeName });
+router.get('/Assign', async(req, res) => {
+    res.render('staff/Assign')
 })
-
-router.get('/AssignCourse', async(req, res) => {
-    const result = await dbHandler.viewAll("course")
-    const getCategory = await dbHandler.getCategory("courseCategory")
-
-    res.render('staff/AssignHome', { viewAll: result, getAllCategory: getCategory });
-})
-
 
 /* Regarding Css */
 router.use(express.static('public'));
