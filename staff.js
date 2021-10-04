@@ -211,9 +211,9 @@ router.get('/AssignTrainee', async(req, res) => {
     res.render('staff/AssignTrainee')
 })
 
-router.get('/AssignTrainee', async(req, res) => {
+router.get('/AssignTrainer', async(req, res) => {
 
-    res.render('staff/AssignTrainee')
+    res.render('staff/AssignTrainer')
 })
 
 /* Regarding Css */

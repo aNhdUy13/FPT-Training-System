@@ -21,32 +21,26 @@
             <div class="tableAddTrainee">
                 <h4 style="font-size: xx-large;">Assign Trainer to a Course</h4>
                 <table>
-                    <form  action="../staff/addCourse" method="post">
+                    <form  action="../staff/AssignTrainer" method="post">
                         <tr>
                             <td>Trainer Name : </td>
                             <td>
-                                <select name="txtCourseCategory">
+                                <select name="txtTrainerAssign">
                                     <option selected>Select a Trainer</option>
-                                    {{#each getAllCategory}}
-                                        <option value="{{name}}">{{name}}</option>
-                                    {{/each}}
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>Course Category: </td>
+                            <td>Course: </td>
                             <td>
-                                <select name="txtCourseCategory">
+                                <select name="txtTCourseAssign">
                                     <option selected>Select a Course</option>
-                                    {{#each getAllCategory}}
-                                        <option value="{{name}}">{{name}}</option>
-                                    {{/each}}
                                 </select>
                             </td>                         
                         </tr>
                         <tr>
                             <td>Duration : </td>
-                            <td><input type="text" name="txtCourseDescription"> </td> 
+                            <td><input type="text" name="txtDuration"> </td> 
                         </tr>
                         <td></td>
                             <td><input type="submit" value="Insert" class="insertButton"></td>
@@ -56,7 +50,7 @@
         </div>
 
         <div class="bottomTraineeLayout">
-            <form method="POST" action="../staff/searchCourse">
+            <form method="POST" action="../staff/AssignTrainer">
                 <input class="traineeSearchBar" type="text" name="txtNameCourse" style="width: 350px;">
                 <input type="submit" value="Search">          
             </form>
@@ -72,29 +66,25 @@
                     </tr>
                 </thead>
                     <tbody>
-                        {{#each viewAll}}
                             <tr>
-                                <td>{{name}}</td>
-                                <td>{{courseCategory}}</td>
-                                <td>{{description}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <button>
-                                        <a href="../staff/deleteCourse?id={{_id}}" onclick="return confirm('Are You Sure to Delete ?')">
+                                        <a>
                                                 Remove
                                         </a>
                                     </button>
                                 </td>
                                 <td>
                                         <button>
-                                            <a href="../staff/updateCourse?id={{_id}}">
+                                            <a>
                                                 Update
                                             </a>
                                     </button>
                                 </td>
-                            
                             </tr>
-                        {{/each }}
-
             </tbody>
            </table>
         </div>
