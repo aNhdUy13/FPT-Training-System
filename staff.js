@@ -30,9 +30,9 @@ router.post('/doAddTraineeAccount', async(req, res) => {
     if (traineeName.trim().length < 5) {
         res.render('staff/traineeManagement', { errorName: "Error : Name cannot lower than 5 " })
 
-    } else if (traineeEmail.trim().length == 0) {
+    } else if (traineeEmail.trim().length == 0 || traineeEmail.indexOf("@") == -1) {
 
-        res.render('staff/traineeManagement', { errorEmail: "Error : Fill the email " })
+        res.render('staff/traineeManagement', { errorEmail: "Error : Fill the email / correct format " })
     } else if (traineePassword.trim().length == 0) {
         res.render('staff/traineeManagement', { errorPassword: "Error : Fill the password " })
     } else if (traineeAge.trim().length == 0 || isNaN(traineeAge) == true) {
@@ -120,12 +120,12 @@ router.get('/deleteCourseCategory', async(req, res) => {
     res.redirect('CourseCategory')
 })
 router.post('/searchCourseCategory', async(req, res) => {
-        const nameCourseCate = req.body.txtNameCourseCategory;
+    const nameCourseCate = req.body.txtNameCourseCategory;
 
-        const result = await dbHandler.searchCourseCategory("courseCategory", nameCourseCate);
+    const result = await dbHandler.searchCourseCategory("courseCategory", nameCourseCate);
 
-        res.render('staff/CourseCategory', { viewAllCourseCategory: result });
-    })
+    res.render('staff/CourseCategory', { viewAllCourseCategory: result });
+})
 
 router.get('/CourseCategory', async(req, res) => {
     const result = await dbHandler.viewAll("courseCategory")
@@ -141,19 +141,19 @@ router.get('/updateCourseCategory', async(req, res) => {
 
 })
 router.post('/doupdateCourseCategory', async(req, res) => {
-    const id = req.body.id;
-    const nameCourseCate= req.body.txtNameCourseCategory;
-    const desCourseCate= req.body.txtDesCourseCategory;
-    const editCourseCategory = {$set:{name: nameCourseCate, description: desCourseCate}};
-    await dbHandler.doUpdateFunction("courseCategory",id, editCourseCategory);
-    res.redirect('CourseCategory') 
-})
-// Hoang - Course
+        const id = req.body.id;
+        const nameCourseCate = req.body.txtNameCourseCategory;
+        const desCourseCate = req.body.txtDesCourseCategory;
+        const editCourseCategory = { $set: { name: nameCourseCate, description: desCourseCate } };
+        await dbHandler.doUpdateFunction("courseCategory", id, editCourseCategory);
+        res.redirect('CourseCategory')
+    })
+    // Hoang - Course
 router.post('/addCourse', async(req, res) => {
     const nameCourse = req.body.txtNameCourse;
     const courseCategory = req.body.txtCourseCategory;
     const descriptionCourse = req.body.txtCourseDescription;
-    const dataCourse = { name: nameCourse,courseCategory: courseCategory, description: descriptionCourse}
+    const dataCourse = { name: nameCourse, courseCategory: courseCategory, description: descriptionCourse }
     await dbHandler.insertCourseCategory("course", dataCourse);
 
     res.redirect('Course');
@@ -196,13 +196,13 @@ router.get('/updateCourse', async(req, res) => {
 
 router.post('/doupdateCourse', async(req, res) => {
     const id = req.body.id;
-    const nameCourse= req.body.txtNameCourse;
+    const nameCourse = req.body.txtNameCourse;
     const courseCategory = req.body.txtCourseCategory;
-    const desCourse= req.body.txtDesCourse;
+    const desCourse = req.body.txtDesCourse;
 
-    const editCourse = {$set:{name: nameCourse,courseCategory: courseCategory, description: desCourse}};
-    await dbHandler.doUpdateFunction("course",id, editCourse);
-    res.redirect('Course') 
+    const editCourse = { $set: { name: nameCourse, courseCategory: courseCategory, description: desCourse } };
+    await dbHandler.doUpdateFunction("course", id, editCourse);
+    res.redirect('Course')
 })
 
 // Hoang END
