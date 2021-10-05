@@ -163,8 +163,9 @@ router.post('/searchCourse', async(req, res) => {
     const nameCourse = req.body.txtNameCourse;
 
     const result = await dbHandler.searchCourseCategory("course", nameCourse);
+    const getCategory = await dbHandler.getCategory("courseCategory")
 
-    res.render('staff/Course', { viewAll: result });
+    res.render('staff/Course', { viewAll: result, getAllCategory: getCategory});
 })
 router.get('/deleteCourse', async(req, res) => {
     const id = req.query.id;
@@ -187,8 +188,9 @@ router.get('/updateCourse', async(req, res) => {
     const getCategory = await dbHandler.getCategory("courseCategory")
 
     res.render('staff/updateCourse', { course: editCourse, viewAll: result, getAll: getCategory })
-
 })
+
+
 router.post('/doupdateCourse', async(req, res) => {
     const id = req.body.id;
     const nameCourse = req.body.txtNameCourse;
@@ -202,7 +204,17 @@ router.post('/doupdateCourse', async(req, res) => {
 
 // Hoang END
 
+// Tan - assign Trainer, Trainee a Course
 
+router.get('/AssignTrainee', async(req, res) => {
+
+    res.render('staff/AssignTrainee')
+})
+
+router.get('/AssignTrainer', async(req, res) => {
+
+    res.render('staff/AssignTrainer')
+})
 
 /* Regarding Css */
 router.use(express.static('public'));

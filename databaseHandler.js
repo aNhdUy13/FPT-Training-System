@@ -100,6 +100,12 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
     return result;
 }
 
+async function getTraineeName(collectionName) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({}).toArray();
+    return result;
+}
+
 async function insertCourseCategory(collectionName, data) {
     const dbo = await getDBO();
     await dbo.collection(collectionName).insertOne(data);
@@ -138,5 +144,6 @@ module.exports = {
     searchCourseCategory,
     viewAll,
     checkUser,
-    getCategory
+    getCategory,
+    getTraineeName
 }

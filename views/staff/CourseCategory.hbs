@@ -51,7 +51,9 @@
                 <thead>
                     <tr>
                             <th>Name</th>
-                            <th>Description</th>                         
+                            <th>Description</th>
+                            <th>Delete</th>
+                            <th>Update</th>                          
                     </tr>
                 </thead>
                     <tbody>
@@ -62,6 +64,8 @@
                                 <td>
                                     <button>
                                         <a href="../staff/deleteCourseCategory?id={{_id}}" onclick="return confirm('Are You Sure to Delete ?')">
+                                        <img src="https://icon-library.com/images/red-recycle-bin-icon/red-recycle-bin-icon-18.jpg"
+                                            width="18" height="18">
                                                 Delete
                                         </a>
                                     </button>
@@ -69,6 +73,8 @@
                                 <td>
                                         <button>
                                             <a href="../staff/updateCourseCategory?id={{_id}}">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg/1024px-Edit_icon_%28the_Noun_Project_30184%29.svg.png"
+                                                width="18" height="18" alt="">
                                                 Update
                                             </a>
                                     </button>
