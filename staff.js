@@ -187,6 +187,9 @@ router.get('/updateCourse', async(req, res) => {
     const result = await dbHandler.viewAll("course")
     const getCategory = await dbHandler.getCategory("courseCategory")
 
+    let currentCategory = getCategory.find(c => c.name === editCourse.courseCategory)
+    if (currentCategory) currentCategory.selected = 'selected'
+    
     res.render('staff/updateCourse', { course: editCourse, viewAll: result, getAll: getCategory })
 })
 
