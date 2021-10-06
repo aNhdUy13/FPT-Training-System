@@ -5,8 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+        <link rel="stylesheet" href="/css/normal_layout.css">
+    <link rel="stylesheet" href="/css/trainer.css">
 </head>
 <body>
-    <h1>Trainee Home !</h1>
+        <div class="container ">
+
+    {{> header}}
+
+    <!-- Content -->
+    <div class="main_Content">
+        <div class="bottomTraineeLayout">
+             <table border="1" cellspacing ="0 " cellpadding="15">
+                <thead>
+                    <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>DoB</th>
+                            <th>Education</th>
+                            <th>Role</th>     
+                            <th>Update</th>   
+                                                
+                    </tr>
+                </thead>
+                <tbody>
+                        {{#each viewAllTraineeAccount}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{age}}</td>
+                                <td>{{DoB}}</td>     
+                                <td>{{education}}</td>
+                                <td>{{role}}</td> 
+                                <td>
+                                    <button>
+                                                <a href="../staff/updateTraineeAccount?id={{_id}}">                                      
+                                                    Update
+                                                </a>
+                                    </button>
+                                </td>
+                                                                                  
+                            </tr>
+                        {{/each }}
+                </tbody>
+           </table>
+        </div>
+    </div>
+    {{> footer}}
+
+</div>
 </body>
 </html>
