@@ -14,7 +14,6 @@ router.post('/doLogin',async(req,res)=>{
     const found = await dbHandler.checkUser(nameInput,passInput);
     if(found){
         var findEmail = await dbHandler.emailFinding(nameInput);     
-        console.log(findEmail[0].role);
         //phan role
         if( findEmail[0].role == "trainee")
         {
