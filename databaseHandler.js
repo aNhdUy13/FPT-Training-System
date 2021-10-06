@@ -25,8 +25,9 @@ async function emailFinding(emailIn){
     const resultss = await dbo.collection("users").
     find({email:emailIn}).toArray(); 
     return resultss;
-     
+
 }
+
 /* ======== Admin  Role ========*/
 
 /* (END) Admin Role */
