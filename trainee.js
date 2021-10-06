@@ -4,7 +4,7 @@ const router = express.Router();
 const dbHandler = require('./databaseHandler');
 
 router.get('/', (req, res) => {
-    res.render('trainer/trainerHome');
+    res.render('trainer/Home');
 })
 
 router.post('/viewAllTraineeAccount',async (req,res)=>{
