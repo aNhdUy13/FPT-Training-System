@@ -9,5 +9,25 @@
 <body>
     <h1>hello</h1>
     <h2 style="color: brown;" >{{errorMsg}}</h2>
+    <table class="table table-hover">
+       <thead>
+           <tr>
+               <th>Name</th>
+               <th>Price</th>
+               <th>role</th>
+           </tr>
+       </thead>
+       <tbody>
+           {{#each model}}
+           <tr>
+                <td>{{email}}</td>
+                <td>{{password}}</td>
+                <td>{{role}}</td>
+            </tr>
+            {{/each}}
+       </tbody>    
+   </table>
+
+      
 </body>
 </html>

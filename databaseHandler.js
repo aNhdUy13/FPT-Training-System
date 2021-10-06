@@ -20,6 +20,13 @@ async function checkUser(nameIn, passwordIn) {
     else
         return false;
 }
+async function emailFinding(emailIn){
+    const dbo = await getDBO();
+    const resultss = await dbo.collection("users").
+    find({email:emailIn}).toArray(); 
+    return resultss;
+     
+}
 /* ======== Admin  Role ========*/
 
 /* (END) Admin Role */
@@ -145,5 +152,6 @@ module.exports = {
     viewAll,
     checkUser,
     getCategory,
-    getTraineeName
+    getTraineeName,
+    emailFinding
 }

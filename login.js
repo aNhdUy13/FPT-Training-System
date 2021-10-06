@@ -13,7 +13,8 @@ router.post('/doLogin',async(req,res)=>{
     var passInput = req.body.txtPassword;
     const found = await dbHandler.checkUser(nameInput,passInput);
     if(found){
-        res.render('testlogin')
+        var findEmail = await dbHandler.emailFinding(nameInput);
+        res.render('testlogin',{model:findEmail})    
     }
     else{
         res.render('login')
