@@ -14,7 +14,7 @@ const dbHandler = require('./databaseHandler');
 
 
 var adminController = require('./login.js');
-app.use('/', adminController);
+app.use('/home2', adminController);
 
 app.get('/home', (req, res) => {
     res.render('main');
@@ -25,7 +25,7 @@ var adminController = require('./admin.js');
 app.use('/admin', adminController);
 
 var adminController = require('./staff.js');
-app.use('/staff', adminController);
+app.use('/', adminController);
 
 var adminController = require('./trainer.js');
 app.use('/trainer', adminController);
