@@ -3,14 +3,14 @@ const router = express.Router();
 const dbHandler = require('./databaseHandler');
 const app = express();
 
-router.get('/traineeManagement', (req, res) => {
+router.get('/', (req, res) => {
     res.render('staff/staffHome');
 })
 
 /**
  * Nguyen DUy Anh
  */
-router.get('/', async(req, res) => {
+router.get('/traineeManagement', async(req, res) => {
     const result = await dbHandler.viewAllTraineeAccount("users")
 
     res.render('staff/traineeManagement', { viewAllTraineeAccount: result });
