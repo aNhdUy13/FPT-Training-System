@@ -16,7 +16,7 @@ router.post('/doLogin',async(req,res)=>{
         res.render('testlogin')
     }
     else{
-        res.render('testlogin',{errorMsg:"Login fail"})
+        res.render('login')
     }
 })
 

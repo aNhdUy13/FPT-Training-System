@@ -13,8 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const dbHandler = require('./databaseHandler');
 
 
-
-
 var adminController = require('./login.js');
 app.use('/', adminController);
 
