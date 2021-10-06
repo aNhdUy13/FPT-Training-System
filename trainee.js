@@ -7,18 +7,17 @@ router.get('/', (req, res) => {
     res.render('trainer/trainerHome');
 })
 
-
-module.exports = router;
-
-
-router.post('/updateTraineeAccount',async (req,res)=>{
+router.post('/viewAllTraineeAccount',async (req,res)=>{
+    const id = req.body.id;
     const nameInput = req.body.txtName;
     const ageInput = req.body.txtAge;
     const dobInput = req.body.txtDoB;
     const educationInput = req.body.txtEducation;
-    const dbo = await dbHandler.GetDB();
-    const newValues ={$set : {name: nameInput,age: ageInput, dob: dobInput, education: educationInput}};
-    
-    await dbHandler.updateTraineeAccount("users", newValues);
-    res.redirect('/view');
+    const roleInput = req.body.txtRole;
+    const newValues ={$set : {name: nameInput,age: ageInput, dob: dobInput, education: educationInput, role : roleInput}};      
+    await dbHandler.viewAllTraineeAccount("users", newValues);
+    res.redirect('/trainer');
 })
+
+module.exports = router;
+

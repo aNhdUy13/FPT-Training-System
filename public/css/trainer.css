@@ -1,0 +1,43 @@
+div.topTraineeLayout {
+    width: 100%;
+    height: 300px;
+}
+
+div.tableAddTrainee {
+    width: 40%;
+    height: 300px;
+    border: 1px solid black;
+    margin-left: 30%;
+}
+div.main_Content {
+    width: 100%;
+    height: 400px;
+    background-color: #f1f1f1;
+    margin-bottom: 20px;
+}
+
+h4 {
+    margin-left: 35%;
+}
+
+div.tableAddTrainee table {
+    margin-left: 15%;
+    margin-top: 5%;
+}
+
+div.tableAddTrainee table input {
+    margin-top: 5px;
+}
+
+div.bottomTraineeLayout {
+    width: 100%;
+    height: 390px;
+    margin-top: 10px;
+}
+div.bottomTraineeLayout table {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    overflow: auto;
+}
+
