@@ -141,7 +141,29 @@ async function getCategory(collectionName) {
     const result = await dbo.collection(collectionName).find({}).toArray();
     return result;
 }
+// Vu Manh Tan
+async function getCourse(collectionName) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({}).toArray();
+    return result;
+}
 
+async function insertAssign(collectionName, data) {
+    const dbo = await getDBO();
+    await dbo.collection(collectionName).insertOne(data);
+}
+
+async function viewAllAssign(collectionName) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({}).toArray();
+    return result;
+}
+
+async function searchAssign(collectionName, nameCourseAssign) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({ name: nameCourseAssign }).toArray();
+    return result;
+}
 
 
 /* (END) Staff Role */
@@ -160,5 +182,9 @@ module.exports = {
     checkUser,
     getCategory,
     getTraineeName,
-    emailFinding
+    emailFinding,
+    getCourse,
+    insertAssign,
+    viewAllAssign,
+    searchAssign
 }

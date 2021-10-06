@@ -21,22 +21,28 @@
             <div class="tableAddTrainee">
                 <h4 style="font-size: xx-large;">Assign Trainee to a Course</h4>
                 <table>
-                    <form  action="../staff/AssignTrainee" method="post">
+                    <form  action="../staff/addAssign" method="post">
                         <tr>
                             <td>Trainee Name : </td>
                             <td>
-                                <select name="txtTraineeAssign">
+                                <select name="txtNameTraineeAssign">
                                     <option selected>Select a Trainee</option>
+                                    {{#each getAllTrainee}}
+                                        <option value="{{name}}">{{name}}</option>
+                                    {{/each}}
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>Course Category: </td>
+                            <td>Course Name: </td>
                             <td>
-                                <select name="txtCourseAssign">
+                                <select name="txtNameCourseAssign">
                                     <option selected>Select a Course</option>
+                                    {{#each getAllCourse}}
+                                        <option value="{{name}}">{{name}}</option>
+                                    {{/each}}
                                 </select>
-                            </td>                         
+                            </td>                      
                         </tr>
                         <tr>
                             <td>Duration : </td>
@@ -50,8 +56,8 @@
         </div>
 
         <div class="bottomTraineeLayout">
-            <form method="POST" action="../staff/AssignTrainee">
-                <input class="traineeSearchBar" type="text" name="txtNameCourse" style="width: 350px;">
+            <form method="POST" action="../staff/searchAssign">
+                <input class="traineeSearchBar" type="text" name="txtNameCourseAssign" style="width: 350px;">
                 <input type="submit" value="Search">          
             </form>
 
@@ -61,31 +67,25 @@
                             <th>Trainee Name</th>
                             <th>Course</th>
                             <th>Duration</th>
-                            <th>Remove</th>  
-                            <th>Update</th>                      
+                            <th>Remove</th>                     
                     </tr>
                 </thead>
                     <tbody>
+                        {{#each viewAllAssign}}
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{name}}</td>
+                                <td>{{name1}}</td>
+                                <td>{{dura}}</td>
                                 <td>
                                     <button>
-                                        <a>
+                                        <a href="../staff/deleteAssign?id={{_id}}" onclick="return confirm('Are You Sure to Delete ?')">
                                                 Remove
                                         </a>
                                     </button>
-                                </td>
-                                <td>
-                                        <button>
-                                            <a>
-                                                Update
-                                            </a>
-                                    </button>
-                                </td>
-                            
+                                </td>                          
                             </tr>
+                        {{/each }}
+
             </tbody>
            </table>
         </div>

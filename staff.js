@@ -210,8 +210,42 @@ router.post('/doupdateCourse', async(req, res) => {
 // Tan - assign Trainer, Trainee a Course
 
 router.get('/AssignTrainee', async(req, res) => {
+    const result = await dbHandler.viewAll("course");
+    const getCourse = await dbHandler.getCourse("course");
+    const result1 = await dbHandler.viewAllTraineeAccount("users");
+    const getTraineeName = await dbHandler.getTraineeName("users");
+    const result2 = await dbHandler.viewAllAssign("assignCourse");
+    
 
-    res.render('staff/AssignTrainee')
+    res.render('staff/AssignTrainee', {viewAllAssign : result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse : getCourse, getAllTrainee: getTraineeName });
+})
+
+router.post('/addAssign', async(req, res) => {
+    const nameTraineeAssign = req.body.txtNameTraineeAssign;
+    const nameCourseAssign = req.body.txtNameCourseAssign;
+    const duration = req.body.txtDuration;
+    const result2 = await dbHandler.viewAllAssign("assignCourse");
+    const dataAssign = {name : nameTraineeAssign, name1 : nameCourseAssign, dura : duration}
+    await dbHandler.insertAssign("assignCourse", dataAssign);
+    
+
+    res.redirect('AssignTrainee');
+
+})
+
+router.post('/searchAssign', async(req, res) => {
+    const nameCourseAssign = req.body.txtNameCourseAssign;
+
+    const result = await dbHandler.searchAssign("assignCourse", nameCourseAssign);
+    
+    res.render('staff/AssignTrainee', { viewAllAssign1: result});
+})
+
+router.get('/deleteAssign', async(req, res) => {
+    const id = req.query.id;
+
+    await dbHandler.deleteFunction("assignCourse", id);
+    res.redirect('AssignTrainee')
 })
 
 router.get('/AssignTrainer', async(req, res) => {
