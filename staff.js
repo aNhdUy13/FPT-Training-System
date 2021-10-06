@@ -3,14 +3,14 @@ const router = express.Router();
 const dbHandler = require('./databaseHandler');
 const app = express();
 
-router.get('/', (req, res) => {
+router.get('/traineeManagement', (req, res) => {
     res.render('staff/staffHome');
 })
 
 /**
  * Nguyen DUy Anh
  */
-router.get('/traineeManagement', async(req, res) => {
+router.get('/', async(req, res) => {
     const result = await dbHandler.viewAllTraineeAccount("users")
 
     res.render('staff/traineeManagement', { viewAllTraineeAccount: result });
@@ -165,7 +165,7 @@ router.post('/searchCourse', async(req, res) => {
     const result = await dbHandler.searchCourseCategory("course", nameCourse);
     const getCategory = await dbHandler.getCategory("courseCategory")
 
-    res.render('staff/Course', { viewAll: result, getAllCategory: getCategory});
+    res.render('staff/Course', { viewAll: result, getAllCategory: getCategory });
 })
 router.get('/deleteCourse', async(req, res) => {
     const id = req.query.id;
@@ -189,7 +189,7 @@ router.get('/updateCourse', async(req, res) => {
 
     let currentCategory = getCategory.find(c => c.name === editCourse.courseCategory)
     if (currentCategory) currentCategory.selected = 'selected'
-    
+
     res.render('staff/updateCourse', { course: editCourse, viewAll: result, getAll: getCategory })
 })
 
