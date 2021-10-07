@@ -141,8 +141,6 @@ async function getData(collectionName) {
     const result = await dbo.collection(collectionName).find({}).toArray();
     return result;
 }
-// Vu Manh Tan
-
 
 async function searchAssign(collectionName, nameCourseAssign) {
     const dbo = await getDBO();
@@ -168,5 +166,6 @@ module.exports = {
     getData,
     getTraineeName,
     emailFinding,
-    searchAssign
+    searchAssign,
+    viewAllTrainerAccount
 }
