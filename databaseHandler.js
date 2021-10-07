@@ -20,10 +20,10 @@ async function checkUser(nameIn, passwordIn) {
     else
         return false;
 }
-async function emailFinding(emailIn){
+async function emailFinding(emailIn) {
     const dbo = await getDBO();
     const resultss = await dbo.collection("users").
-    find({email:emailIn}).toArray(); 
+    find({ email: emailIn }).toArray();
     return resultss;
 
 }
@@ -168,5 +168,6 @@ module.exports = {
     getData,
     getTraineeName,
     emailFinding,
-    searchAssign
+    searchAssign,
+    viewAllTrainerAccount
 }

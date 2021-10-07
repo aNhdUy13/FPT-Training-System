@@ -108,7 +108,7 @@ router.post('/addCourseCategory', async(req, res) => {
     const nameCourseCate = req.body.txtNameCourseCategory;
     const descriptionCourseCate = req.body.txtCourseDescription;
     const dataCourseCategory = { name: nameCourseCate, description: descriptionCourseCate }
-    await dbHandler.insertCourseCategory("courseCategory", dataCourseCategory);
+    await dbHandler.insertFunction("courseCategory", dataCourseCategory);
 
     res.redirect('CourseCategory');
 
@@ -215,18 +215,18 @@ router.get('/AssignTrainee', async(req, res) => {
     const result1 = await dbHandler.viewAll("users");
     const getTraineeName = await dbHandler.getTraineeName("users");
     const result2 = await dbHandler.viewAll("assignCourse");
-    
 
-    res.render('staff/AssignTrainee', {viewAllAssign : result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse : getCourse, getAllTrainee: getTraineeName });
+
+    res.render('staff/AssignTrainee', { viewAllAssign: result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse: getCourse, getAllTrainee: getTraineeName });
 })
 
 router.post('/addAssign', async(req, res) => {
     const nameTraineeAssign = req.body.txtNameTraineeAssign;
     const nameCourseAssign = req.body.txtNameCourseAssign;
     const duration = req.body.txtDuration;
-    const dataAssign = {name : nameTraineeAssign, name1 : nameCourseAssign, dura : duration}
+    const dataAssign = { name: nameTraineeAssign, name1: nameCourseAssign, dura: duration }
     await dbHandler.insertFunction("assignCourse", dataAssign);
-    
+
 
     res.redirect('AssignTrainee');
 
@@ -236,8 +236,8 @@ router.post('/searchAssign', async(req, res) => {
     const nameCourseAssign = req.body.txtNameCourseAssign;
 
     const result = await dbHandler.searchAssign("assignCourse", nameCourseAssign);
-    
-    res.render('staff/AssignTrainee', { viewAllAssign1: result});
+
+    res.render('staff/AssignTrainee', { viewAllAssign1: result });
 })
 
 router.get('/deleteAssign', async(req, res) => {
