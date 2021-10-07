@@ -120,7 +120,7 @@ async function getTraineeName(collectionName) {
     return result;
 }
 
-async function insertCourseCategory(collectionName, data) {
+async function insertFunction(collectionName, data) {
     const dbo = await getDBO();
     await dbo.collection(collectionName).insertOne(data);
 
@@ -136,28 +136,13 @@ async function viewAll(collectionName) {
     const result = await dbo.collection(collectionName).find({}).toArray();
     return result;
 }
-async function getCategory(collectionName) {
+async function getData(collectionName) {
     const dbo = await getDBO();
     const result = await dbo.collection(collectionName).find({}).toArray();
     return result;
 }
 // Vu Manh Tan
-async function getCourse(collectionName) {
-    const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({}).toArray();
-    return result;
-}
 
-async function insertAssign(collectionName, data) {
-    const dbo = await getDBO();
-    await dbo.collection(collectionName).insertOne(data);
-}
-
-async function viewAllAssign(collectionName) {
-    const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({}).toArray();
-    return result;
-}
 
 async function searchAssign(collectionName, nameCourseAssign) {
     const dbo = await getDBO();
@@ -176,15 +161,12 @@ module.exports = {
     updateFunction,
     doUpdateFunction,
     searchTraineeAccount,
-    insertCourseCategory,
+    insertFunction,
     searchCourseCategory,
     viewAll,
     checkUser,
-    getCategory,
+    getData,
     getTraineeName,
     emailFinding,
-    getCourse,
-    insertAssign,
-    viewAllAssign,
     searchAssign
 }
