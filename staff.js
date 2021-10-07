@@ -252,10 +252,14 @@ router.get('/AssignTrainer', async(req, res) => {
     res.render('staff/AssignTrainer')
 })
 
-/* Regarding Css */
+
+
+
+/**
+ * CSS
+ */
 router.use(express.static('public'));
 
-/* (End) Regarding Css */
 
 
 module.exports = router;
