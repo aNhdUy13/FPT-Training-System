@@ -57,7 +57,7 @@ async function createStaffAccount(collectionName, emailStaff, passwordStaff, nam
 async function searchStaffAccount(collectionName, staffNameAgeSearch) {
     const dbo = await getDBO();
     const result = await dbo.collection(collectionName).find({
-        role: "trainee",
+        role: "staff",
         $or: [{ name: staffNameAgeSearch }, { age: staffNameAgeSearch }]
     }).toArray();
 
