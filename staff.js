@@ -30,9 +30,9 @@ router.post('/doAddTraineeAccount', async(req, res) => {
     if (traineeName.trim().length < 5) {
         res.render('staff/traineeManagement', { errorName: "Error : Name cannot lower than 5 " })
 
-    } else if (traineeEmail.trim().length == 0 || traineeEmail.indexOf("@") == -1) {
+    } else if (traineeEmail.trim().length == 0) {
 
-        res.render('staff/traineeManagement', { errorEmail: "Error : Fill the email / correct format " })
+        res.render('staff/traineeManagement', { errorEmail: "Error : Fill the email " })
     } else if (traineePassword.trim().length == 0) {
         res.render('staff/traineeManagement', { errorPassword: "Error : Fill the password " })
     } else if (traineeAge.trim().length == 0 || isNaN(traineeAge) == true) {
@@ -58,13 +58,20 @@ router.get('/updateTraineeAccount', async(req, res) => {
     res.render('staff/updateTraineeAccount', { traineeDetail: traineeAccountToEdit })
 
 })
-router.post('/doUpdateTraineeAccount', async(req, res) => {
-    const id = req.body.id;
-    const nameUpdated = req.body.txtUpdateTraineeName;
-    const emailUpdated = req.body.txtUpdateTraineeEmail;
-    const ageUpdated = req.body.txtUpdateTraineeAge;
-    const dobUpdated = req.body.txtUpdateTraineeDoB;
-    const educationUpdated = req.body.txtUpdateTraineeEducation;
+router.get('/updateTrainerAccount', async(req, res) => {
+
+    const id = req.query.id;
+    var trainerAccountToEdit = await dbHandler.updateFunction("users", id);
+    res.render('staff/updateTrainerAccount', { trainerDetail: trainerAccountToEdit })
+})
+
+        router.post('/doUpdateTrainerAccount', async(req, res) => {
+        const id = req.body.id;
+        const nameUpdated = req.body.txtUpdateTrainerName;
+        const emailUpdated = req.body.txtUpdateTrainerEmail;
+        const ageUpdated = req.body.txtUpdateTrainerAge;
+        const dobUpdated = req.body.txtUpdateTrainerDoB;
+        const educationUpdated = req.body.txtUpdateTrainerEducation;
 
 
     const newValue = {
@@ -75,7 +82,29 @@ router.post('/doUpdateTraineeAccount', async(req, res) => {
             DoB: dobUpdated,
             education: educationUpdated
         }
-    };
+    }
+});
+
+    router.post('/doUpdateTrainerAccount', async(req, res) => {
+        const id = req.body.id;
+        const nameUpdated = req.body.txtUpdateTraineeName;
+        const emailUpdated = req.body.txtUpdateTraineeEmail;
+        const ageUpdated = req.body.txtUpdateTraineeAge;
+        const dobUpdated = req.body.txtUpdateTraineeDoB;
+        const educationUpdated = req.body.txtUpdateTrainerEducation;
+    
+    
+        const newValue = {
+            $set: {
+                email: emailUpdated,
+                name: nameUpdated,
+                age: ageUpdated,
+                DoB: dobUpdated,
+                education: educationUpdated
+            }
+        };
+
+    
 
 
     await dbHandler.doUpdateFunction("users", id, newValue);
@@ -108,7 +137,7 @@ router.post('/addCourseCategory', async(req, res) => {
     const nameCourseCate = req.body.txtNameCourseCategory;
     const descriptionCourseCate = req.body.txtCourseDescription;
     const dataCourseCategory = { name: nameCourseCate, description: descriptionCourseCate }
-    await dbHandler.insertFunction("courseCategory", dataCourseCategory);
+    await dbHandler.insertCourseCategory("courseCategory", dataCourseCategory);
 
     res.redirect('CourseCategory');
 
@@ -120,14 +149,14 @@ router.get('/deleteCourseCategory', async(req, res) => {
     res.redirect('CourseCategory')
 })
 router.post('/searchCourseCategory', async(req, res) => {
-    const nameCourseCate = req.body.txtNameCourseCategory;
+        const nameCourseCate = req.body.txtNameCourseCategory;
 
-    const result = await dbHandler.searchCourseCategory("courseCategory", nameCourseCate);
+        const result = await dbHandler.searchCourseCategory("courseCategory", nameCourseCate);
 
-    res.render('staff/CourseCategory', { viewAllCourseCategory: result });
-})
+        res.render('staff/CourseCategory', { viewAllCourseCategory: result });
+    })
 
-router.get('/CourseCategory', async(req, res) => {
+router.get('/CourseCategory', async(req, res) =>{
     const result = await dbHandler.viewAll("courseCategory")
 
     res.render('staff/CourseCategory', { viewAllCourseCategory: result });
@@ -141,20 +170,21 @@ router.get('/updateCourseCategory', async(req, res) => {
 
 })
 router.post('/doupdateCourseCategory', async(req, res) => {
-        const id = req.body.id;
-        const nameCourseCate = req.body.txtNameCourseCategory;
-        const desCourseCate = req.body.txtDesCourseCategory;
-        const editCourseCategory = { $set: { name: nameCourseCate, description: desCourseCate } };
-        await dbHandler.doUpdateFunction("courseCategory", id, editCourseCategory);
-        res.redirect('CourseCategory')
-    })
-    // Hoang - Course
+    const id = req.body.id;
+    const nameCourseCate= req.body.txtNameCourseCategory;
+    const desCourseCate= req.body.txtDesCourseCategory;
+
+    const editCourseCategory = {$set:{name: nameCourseCate, description: desCourseCate}};
+    await dbHandler.doUpdateFunction("courseCategory",id, editCourseCategory);
+    res.redirect('CourseCategory') 
+})
+// Hoang - Course
 router.post('/addCourse', async(req, res) => {
     const nameCourse = req.body.txtNameCourse;
     const courseCategory = req.body.txtCourseCategory;
     const descriptionCourse = req.body.txtCourseDescription;
-    const dataCourse = { name: nameCourse, courseCategory: courseCategory, description: descriptionCourse }
-    await dbHandler.insertFunction("course", dataCourse);
+    const dataCourseCategory = { name: nameCourse,courseCategory: courseCategory, description: descriptionCourse}
+    await dbHandler.insertCourseCategory("course", dataCourseCategory);
 
     res.redirect('Course');
 
@@ -163,9 +193,7 @@ router.post('/searchCourse', async(req, res) => {
     const nameCourse = req.body.txtNameCourse;
 
     const result = await dbHandler.searchCourseCategory("course", nameCourse);
-    const getCategory = await dbHandler.getData("courseCategory")
-
-    res.render('staff/Course', { viewAll: result, getAllCategory: getCategory });
+    res.render('staff/Course', { viewAll: result });
 })
 router.get('/deleteCourse', async(req, res) => {
     const id = req.query.id;
@@ -175,91 +203,11 @@ router.get('/deleteCourse', async(req, res) => {
 })
 router.get('/Course', async(req, res) => {
     const result = await dbHandler.viewAll("course")
-    const getCategory = await dbHandler.getData("courseCategory")
-
-    res.render('staff/Course', { viewAll: result, getAllCategory: getCategory });
-})
-router.get('/updateCourse', async(req, res) => {
-
-    const id = req.query.id;
-    var editCourse = await dbHandler.updateFunction("course", id);
-
-    const result = await dbHandler.viewAll("course")
-    const getCategory = await dbHandler.getData("courseCategory")
-
-    let currentCategory = getCategory.find(c => c.name === editCourse.courseCategory)
-    if (currentCategory) currentCategory.selected = 'selected'
-
-    res.render('staff/updateCourse', { course: editCourse, viewAll: result, getAll: getCategory })
-})
-
-
-router.post('/doupdateCourse', async(req, res) => {
-    const id = req.body.id;
-    const nameCourse = req.body.txtNameCourse;
-    const courseCategory = req.body.txtCourseCategory;
-    const desCourse = req.body.txtDesCourse;
-
-    const editCourse = { $set: { name: nameCourse, courseCategory: courseCategory, description: desCourse } };
-    await dbHandler.doUpdateFunction("course", id, editCourse);
-    res.redirect('Course')
-})
-
-// Hoang END
-
-// Tan - assign Trainer, Trainee a Course
-
-router.get('/AssignTrainee', async(req, res) => {
-    const result = await dbHandler.viewAll("course");
-    const getCourse = await dbHandler.getData("course");
-    const result1 = await dbHandler.viewAll("users");
-    const getTraineeName = await dbHandler.getTraineeName("users");
-    const result2 = await dbHandler.viewAll("assignCourse");
-
-
-    res.render('staff/AssignTrainee', { viewAllAssign: result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse: getCourse, getAllTrainee: getTraineeName });
-})
-
-router.post('/addAssign', async(req, res) => {
-    const nameTraineeAssign = req.body.txtNameTraineeAssign;
-    const nameCourseAssign = req.body.txtNameCourseAssign;
-    const duration = req.body.txtDuration;
-    const dataAssign = { name: nameTraineeAssign, name1: nameCourseAssign, dura: duration }
-    await dbHandler.insertFunction("assignCourse", dataAssign);
-
-
-    res.redirect('AssignTrainee');
-
-})
-
-router.post('/searchAssign', async(req, res) => {
-    const nameCourseAssign = req.body.txtNameCourseAssign;
-
-    const result = await dbHandler.searchAssign("assignCourse", nameCourseAssign);
-
-    res.render('staff/AssignTrainee', { viewAllAssign1: result });
-})
-
-router.get('/deleteAssign', async(req, res) => {
-    const id = req.query.id;
-
-    await dbHandler.deleteFunction("assignCourse", id);
-    res.redirect('AssignTrainee')
-})
-
-router.get('/AssignTrainer', async(req, res) => {
-
-    res.render('staff/AssignTrainer')
-})
-
-
-
-
-/**
- * CSS
- */
+    res.render('staff/Course', { viewAll: result });
+})// Hoang END
+/* Regarding Css */
 router.use(express.static('public'));
 
-
+/* (End) Regarding Css */
 
 module.exports = router;
