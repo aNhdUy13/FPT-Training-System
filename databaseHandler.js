@@ -188,7 +188,13 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
 
 async function getTraineeName(collectionName) {
     const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({}).toArray();
+    const result = await dbo.collection(collectionName).find({ role: 'trainee' }).toArray();
+    return result;
+}
+
+async function getTrainerName(collectionName) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({ role: 'trainer' }).toArray();
     return result;
 }
 
@@ -216,7 +222,7 @@ async function getData(collectionName) {
 
 async function searchAssign(collectionName, nameCourseAssign) {
     const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({ name: nameCourseAssign }).toArray();
+    const result = await dbo.collection(collectionName).find({ name1: nameCourseAssign }).toArray();
     return result;
 }
 
@@ -237,6 +243,7 @@ module.exports = {
     checkUser,
     getData,
     getTraineeName,
+    getTrainerName,
     emailFinding,
     searchAssign,
     viewAllTrainerAccount,
