@@ -210,4 +210,49 @@ router.use(express.static('public'));
 
 /* (End) Regarding Css */
 
+-// Tan - assign Trainer, Trainee a Course
+
+router.get('/AssignTrainee', async(req, res) => {
+    const result = await dbHandler.viewAll("course");
+    const getCourse = await dbHandler.getData("course");
+    const result1 = await dbHandler.viewAll("users");
+    const getTraineeName = await dbHandler.getTraineeName("users");
+    const result2 = await dbHandler.viewAll("assignCourse");
+
+
+    res.render('staff/AssignTrainee', { viewAllAssign: result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse: getCourse, getAllTrainee: getTraineeName });
+})
+
+router.post('/addAssign', async(req, res) => {
+    const nameTraineeAssign = req.body.txtNameTraineeAssign;
+    const nameCourseAssign = req.body.txtNameCourseAssign;
+    const duration = req.body.txtDuration;
+    const dataAssign = { name: nameTraineeAssign, name1: nameCourseAssign, dura: duration }
+    await dbHandler.insertFunction("assignCourse", dataAssign);
+
+
+    res.redirect('AssignTrainee');
+
+})
+
+router.post('/searchAssign', async(req, res) => {
+    const nameCourseAssign = req.body.txtNameCourseAssign;
+
+    const result = await dbHandler.searchAssign("assignCourse", nameCourseAssign);
+
+    res.render('staff/AssignTrainee', { viewAllAssign1: result });
+})
+
+router.get('/deleteAssign', async(req, res) => {
+    const id = req.query.id;
+
+    await dbHandler.deleteFunction("assignCourse", id);
+    res.redirect('AssignTrainee')
+})
+
+router.get('/AssignTrainer', async(req, res) => {
+
+    res.render('staff/AssignTrainer')
+})
+
 module.exports = router;
