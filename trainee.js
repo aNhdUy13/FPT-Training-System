@@ -15,7 +15,7 @@ router.post('/updateTraineeAccount', async(req, res) => {
     const dobInput = req.body.txtDoB;
     const educationInput = req.body.txtEducation;
     const roleInput = req.body.txtRole;
-    const newValues = { $set: { name: nameInput, age: ageInput, dob: dobInput, education: educationInput, role: roleInput } };
+    const newValues = { $set: { id:id, name: nameInput, age: ageInput, dob: dobInput, education: educationInput, role: roleInput } };
     await dbHandler.viewAllTrainerAccount("users", newValues);
     res.redirect('/trainee/traineeHome');
 })
