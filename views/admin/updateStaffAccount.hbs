@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainee Management</title>
+    <link rel="stylesheet" href="css/normal_layout.css" type="text/css">
+    <link rel="stylesheet" href="css/staff.css" type="text/css">
+
+</head>
+
+<body>
+</body>
+<div class="container ">
+
+    {{> header}}
+
+    <!-- Content -->
+    <div class="main_Content">
+        <div>.</div>
+        <div class="updateStaffAccount">
+                <h4>Update Staff Account</h4>
+
+                <table>
+                    <form action="../admin/doUpdateStaffAccount" method="post">
+                    <td><input type="hidden" name="id" value="{{staffDetail._id}}"></td>
+
+                     <tr>
+                        <td>Name : </td>
+                        <td><input type="text" name="txtUpdateStaffName" value="{{staffDetail.name}}"> </td> 
+                        <td style="color: brown;">{{errorMessage}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email : </td>
+                        <td><input type="text" name="txtUpdateStaffEmail" value="{{staffDetail.email}}"> </td> 
+                        <td style="color: brown;">{{errorMessage}}</td>
+                    </tr>
+
+            
+
+                    <tr>
+                        <td>Age : </td>
+                        <td><input type="text" name="txtUpdateStaffAge" value="{{staffDetail.age}}"></td>
+                        <td  style="color: brown;">{{errorPrice}}</td>
+
+                    </tr>
+
+                     <tr>
+                        <td>Date of Birth : </td>
+                        <td><input type="text" name="txtUpdateStaffDoB" value="{{staffDetail.DoB}}"></td>
+                        <td  style="color: brown;">{{errorPrice}}</td>
+
+                    </tr>
+                    
+                     <tr>
+                        <td>Education : </td>
+                        <td><input type="text" name="txtUpdateStaffEducation" value="{{staffDetail.education}}"></td>
+                        <td  style="color: brown;">{{errorPrice}}</td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Update" class="updateButton"></td>
+
+                    </tr>
+                </form>
+                </table>
+
+        </div>
+
+    </div>
+
+    <!-- (End) Content -->
+
+    {{> footer}}
+
+</div>
+
+
+</html>
