@@ -108,6 +108,7 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
     //     $or: [{ name: new RegExp(traineeNameAgeSearch, 'i') }, { age: traineeNameAgeSearch }]
     // }).toArray();
     const result = await dbo.collection(collectionName).find({
+        role: "trainee",
         $or: [{ name: traineeNameAgeSearch }, { age: traineeNameAgeSearch }]
     }).toArray();
 
