@@ -76,6 +76,7 @@ router.post('/doUpdateStaffAccount', async(req, res) => {
     const id = req.body.id;
     const nameUpdated = req.body.txtUpdateStaffName;
     const emailUpdated = req.body.txtUpdateStaffEmail;
+    const passwordUpdated = req.body.txtUpdateStaffPassword;
     const ageUpdated = req.body.txtUpdateStaffAge;
     const dobUpdated = req.body.txtUpdateStaffDoB;
     const educationUpdated = req.body.txtUpdateStaffEducation;
@@ -85,6 +86,7 @@ router.post('/doUpdateStaffAccount', async(req, res) => {
         $set: {
             email: emailUpdated,
             name: nameUpdated,
+            password: passwordUpdated,
             age: ageUpdated,
             DoB: dobUpdated,
             education: educationUpdated
@@ -103,9 +105,9 @@ router.post('/doUpdateStaffAccount', async(req, res) => {
 
 // START TRAINER ROLE 
 router.get('/trainerManagement', async(req, res) => {
-    const result = await dbHandler.viewAllStaffAccount("users")
+    const result = await dbHandler.viewAllTrainerAccount("users")
 
-    res.render('admin/staffManagement', { viewAllStaffAccount: result });
+    res.render('admin/trainerManagement', { viewAllTrainerAccount: result });
 })
 
 // add trainer account
@@ -141,44 +143,46 @@ router.post('/doAddTrainerAccount', async(req, res) => {
 
 })
 
-//search Staff
-router.post('/searchStaffAccount', async(req, res) => {
-    const staffNameAgeSearch = req.body.txtStaffNameAgeSearch;
+//search trainer
+router.post('/searchTrainerAccount', async(req, res) => {
+    const trainerNameAgeSearch = req.body.txtTrainerNameAgeSearch;
 
-    const result = await dbHandler.searchStaffAccount("users", staffNameAgeSearch);
+    const result = await dbHandler.searchTrainerAccount("users", trainerNameAgeSearch);
 
-    res.render('admin/staffManagement', { viewAllStaffAccount: result });
+    res.render('admin/trainerManagement', { viewAllTrainerAccount: result });
 })
 
-//delete staff
-router.get('/deleteStaffAccount', async(req, res) => {
+//delete trainer
+router.get('/deleteTrainerAccount', async(req, res) => {
     const id = req.query.id;
 
     await dbHandler.deleteFunction("users", id);
-    res.redirect('staffManagement')
+    res.redirect('trainerManagement')
 }) 
-//update staff
+//update trainer
 router.get('/updateTrainerAccount', async(req, res) => {
 
     const id = req.query.id;
 
-    var staffAccountToEdit = await dbHandler.updateFunction("users", id);
-    res.render('admin/updateTrainerAccount', { staffDetail: staffAccountToEdit })
+    var trainerAccountToEdit = await dbHandler.updateFunction("users", id);
+    res.render('admin/updateTrainerAccount', { trainerDetail: trainerAccountToEdit })
 
 })
 router.post('/doUpdateTrainerAccount', async(req, res) => {
     const id = req.body.id;
-    const nameUpdated = req.body.txtUpdateStaffName;
-    const emailUpdated = req.body.txtUpdateStaffEmail;
-    const ageUpdated = req.body.txtUpdateStaffAge;
-    const dobUpdated = req.body.txtUpdateStaffDoB;
-    const educationUpdated = req.body.txtUpdateStaffEducation;
+    const nameUpdated = req.body.txtUpdateTrainerName;
+    const emailUpdated = req.body.txtUpdateTrainerEmail;
+    const passwordUpdated = req.body.txtUpdateTrainerPassword;
+    const ageUpdated = req.body.txtUpdateTrainerAge;
+    const dobUpdated = req.body.txtUpdateTrainerDoB;
+    const educationUpdated = req.body.txtUpdateTrainerEducation;
 
 
     const newValue = {
         $set: {
             email: emailUpdated,
             name: nameUpdated,
+            password: passwordUpdated,
             age: ageUpdated,
             DoB: dobUpdated,
             education: educationUpdated
@@ -188,7 +192,7 @@ router.post('/doUpdateTrainerAccount', async(req, res) => {
 
     await dbHandler.doUpdateFunction("users", id, newValue);
 
-    res.redirect('staffManagement')
+    res.redirect('trainerManagement')
 })
 
 

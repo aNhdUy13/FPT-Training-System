@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Management</title>
+    <link rel="stylesheet" href="css/normal_layout.css" type="text/css">
+    <link rel="stylesheet" href="css/staff.css" type="text/css">
+
+</head>
+
+<body>
+</body>
+<div class="container ">
+
+    {{> header}}
+
+    <!-- Content -->
+    <div class="main_Content">
+<!-- Add account-->
+        <div class="topTraineeLayout">
+            <div class="tableAddTrainee">
+                <h4>Add Trainer Account</h4>
+
+                <table>
+                    <form  action="../admin/doAddTrainerAccount" method="post">
+                        <tr>
+                            <td>Name : </td>
+                            <td><input type="text" name="txtTrainerName"> </td> 
+                            <td style="color: brown;">{{errorName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email : </td>
+                            <td><input type="text" name="txtTrainerEmail"> </td> 
+                            <td style="color: brown;">{{errorEmail}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Password : </td>
+                            <td><input type="text" name="txtTrainerPassword"> </td> 
+                            <td style="color: brown;">{{errorPassword}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Age : </td>
+                            <td><input type="text" name="txtTrainerAge"></td>
+                            <td  style="color: brown;">{{errorAge}}</td>
+
+                        </tr>
+
+                        <tr>
+                            <td>Date of Birth : </td>
+                            <td><input type="text" name="txtTrainerDoB"></td>
+                            <td  style="color: brown;">{{errorMessage}}</td>
+
+                        </tr>
+                        
+                        <tr>
+                            <td>Education : </td>
+                            <td><input type="text" name="txtTrainerEducation"></td>
+                            <td  style="color: brown;">{{errorMessage}}</td>
+
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Insert" class="insertButton"></td>
+
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+<!--search-->
+        <div class="bottomTraineeLayout">
+            <form method="POST" action="../admin/searchTrainerAccount">
+                <input class="traineeSearchBar" type="text" name="txtTrainerNameAgeSearch" style="width: 350px;">
+                <input type="submit" value="Search">          
+            </form>
+<!-- show-->
+             <table border="1" cellspacing ="0 " cellpadding="15">
+                <thead>
+                    <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Date of Birth</th>
+                            <th>Education</th>
+                            <th>Delete</th>
+                            <th>Update</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        {{#each viewAllTrainerAccount}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{email}}</td>
+                                <td>{{age}}</td>
+                                <td>{{DoB}}</td>
+                                <td>{{education}}</td>
+
+                                <td>
+                                    <button>
+                                        <a href="../admin/deleteTrainerAccount?id={{_id}}" 
+                                        onclick="return confirm('Are You Sure to Delete ?')">
+                                         <img src="https://icon-library.com/images/red-recycle-bin-icon/red-recycle-bin-icon-18.jpg"
+                                            width="18" height="18">
+
+                                                Delete
+                                        </a>
+                                    </button>
+                                </td>
+                                <td>
+                                        <button>
+                                            <a href="../admin/updateTrainerAccount?id={{_id}}">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg/1024px-Edit_icon_%28the_Noun_Project_30184%29.svg.png"
+                                                width="18" height="18" alt="">
+                                                Update
+                                            </a>
+                                    </button>
+                                </td>
+                            
+                            </tr>
+                        {{/each }}
+            </tbody>
+           </table>
+        </div>
+    </div>
+
+    <!-- (End) Content -->
+
+    {{> footer}}
+
+</div>
+
+
+</html>

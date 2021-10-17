@@ -30,6 +30,8 @@ async function emailFinding(emailIn) {
 
 /* ======== Admin  Role ========*/
 
+
+// manage staff 
 async function viewAllStaffAccount(collectionName) {
     const dbo = await getDBO();
     const result = await dbo.collection(collectionName).find({ role: 'staff' }).toArray();
@@ -64,6 +66,40 @@ async function searchStaffAccount(collectionName, staffNameAgeSearch) {
     return result;
 }
 
+//Manage trainer
+async function viewAllTrainerAccount(collectionName) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({ role: 'trainer' }).toArray();
+
+    return result;
+}
+
+async function createTrainerAccount(collectionName, emailTrainer, passwordTrainer, nameTrainer,
+    ageTrainer, DoBTrainer, educationTrainer) {
+
+    const dbo = await getDBO();
+    var newTrainerAccount = {
+        email: emailTrainer,
+        password: passwordTrainer,
+        name: nameTrainer,
+        age: ageTrainer,
+        DoB: DoBTrainer,
+        education: educationTrainer,
+        role: "trainer"
+    };
+
+    await dbo.collection(collectionName).insertOne(newTrainerAccount);
+}
+
+async function searchTrainerAccount(collectionName, trainerNameAgeSearch) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({
+        role: "trainer",
+        $or: [{ name: trainerNameAgeSearch }, { age: trainerNameAgeSearch }]
+    }).toArray();
+
+    return result;
+}
 
 /* (END) Admin Role */
 
@@ -206,5 +242,7 @@ module.exports = {
     viewAllTrainerAccount,
     viewAllStaffAccount,
     createStaffAccount,
-    searchStaffAccount
+    searchStaffAccount,
+    createTrainerAccount,
+    searchTrainerAccount
 }
