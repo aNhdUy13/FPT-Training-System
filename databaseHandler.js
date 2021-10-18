@@ -129,12 +129,7 @@ async function viewAllTraineeAccount(collectionName) {
 
     return result;
 }
-async function viewAllTrainerAccount(collectionName) {
-    const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({ role: 'trainer' }).toArray();
 
-    return result;
-}
 
 async function deleteFunction(collectionName, Id) {
     const dbo = await getDBO();
