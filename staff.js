@@ -190,10 +190,10 @@ router.use(express.static('public'));
 - // Tan - assign Trainer, Trainee a Course
 
 router.post('/searchAssign', async(req, res) => {
-    const nameCourse = req.body.txtNameCourse;
+    const nameCourseA = req.body.txtNameCourseAssign;
 
-    const result = await dbHandler.searchCourseCategory("course", nameCourse);
-    res.render('staff/AssignTrainee', { viewAll: result });
+    const result = await dbHandler.searchAssign("assignCourse", nameCourseA);
+    res.render('staff/AssignTrainee', { viewAllAssign: result });
 })
 
 router.get('/AssignTrainee', async(req, res) => {
@@ -216,8 +216,6 @@ router.post('/addAssign', async(req, res) => {
     res.redirect('AssignTrainee');
 })
 
-
-
 router.get('/deleteAssign', async(req, res) => {
     const id = req.query.id;
 
@@ -225,9 +223,38 @@ router.get('/deleteAssign', async(req, res) => {
     res.redirect('AssignTrainee')
 })
 
-router.get('/AssignTrainer', async(req, res) => {
+router.post('/searchAssign1', async(req, res) => {
+    const nameCourseA = req.body.txtNameCourseAssign;
 
-    res.render('staff/AssignTrainer')
+    const result = await dbHandler.searchAssign("assignCourse1", nameCourseA);
+    res.render('staff/AssignTrainer', { viewAllAssign: result });
+})
+
+router.get('/AssignTrainer', async(req, res) => {
+    const result = await dbHandler.viewAll("course");
+    const getCourse = await dbHandler.getData("course");
+    const result1 = await dbHandler.viewAll("users");
+    const getTrainerName = await dbHandler.getTrainerName("users");
+    const result2 = await dbHandler.viewAll("assignCourse1");
+
+    res.render('staff/AssignTrainer', { viewAllAssign: result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse: getCourse, getAllTrainee: getTrainerName });
+})
+
+router.post('/addAssign1', async(req, res) => {
+    const nameTrainerAssign = req.body.txtNameTrainerAssign;
+    const nameCourseAssign = req.body.txtNameCourseAssign;
+    const duration = req.body.txtDuration;
+    const dataAssign = { name: nameTrainerAssign, name1: nameCourseAssign, dura: duration }
+    await dbHandler.insertFunction("assignCourse1", dataAssign);
+
+    res.redirect('AssignTrainer');
+})
+
+router.get('/deleteAssign1', async(req, res) => {
+    const id = req.query.id;
+
+    await dbHandler.deleteFunction("assignCourse1", id);
+    res.redirect('AssignTrainer')
 })
 
 module.exports = router;

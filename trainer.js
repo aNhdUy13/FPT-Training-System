@@ -17,7 +17,7 @@ router.post('/viewAllTrainerAccount',async (req,res)=>{
     const roleInput = req.body.txtRole;
     const newValues ={$set : {id:id, name: nameInput,age: ageInput, dob: dobInput, education: educationInput, role : roleInput}};   
     await dbHandler.viewAllTrainerAccount("users", newValues);
-    res.redirect('/trainer/trainerHome');
+    res.redirect('/');
 })
 
 router.get('/trainerHome', async(req, res) => {

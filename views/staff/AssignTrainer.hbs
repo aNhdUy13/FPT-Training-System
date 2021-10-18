@@ -16,25 +16,31 @@
 
     <!-- Content -->
     <div class="main_Content">
-
+        
         <div class="topTraineeLayout">
             <div class="tableAddTrainee">
                 <h4 style="font-size: xx-large;">Assign Trainer to a Course</h4>
                 <table>
-                    <form  action="../staff/AssignTrainer" method="post">
+                    <form  action="../staff/addAssign1" method="post">
                         <tr>
                             <td>Trainer Name : </td>
                             <td>
-                                <select name="txtTrainerAssign">
+                                <select name="txtNameTrainerAssign">
                                     <option selected>Select a Trainer</option>
+                                    {{#each getAllTrainee}}
+                                        <option value="{{name}}">{{name}}</option>
+                                    {{/each}}
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>Course: </td>
+                            <td>Course Name: </td>
                             <td>
-                                <select name="txtTCourseAssign">
+                                <select name="txtNameCourseAssign">
                                     <option selected>Select a Course</option>
+                                    {{#each getAllCourse}}
+                                        <option value="{{name}}">{{name}}</option>
+                                    {{/each}}
                                 </select>
                             </td>                         
                         </tr>
@@ -44,14 +50,19 @@
                         </tr>
                         <td></td>
                             <td><input type="submit" value="Insert" class="insertButton"></td>
+                        <tr>
+                            <td>
+                                <a href = "../staff/AssignTrainee">Move to Assign Trainee</a>
+                            </td>
+                        </tr>
                     </form>
                 </table>
             </div>
         </div>
 
         <div class="bottomTraineeLayout">
-            <form method="POST" action="../staff/AssignTrainer">
-                <input class="traineeSearchBar" type="text" name="txtNameCourse" style="width: 350px;">
+            <form method="POST" action="../staff/searchAssign1">
+                <input class="traineeSearchBar" type="text" name="txtNameCourseAssign" style="width: 350px;">
                 <input type="submit" value="Search">          
             </form>
 
@@ -61,30 +72,26 @@
                             <th>Trainer Name</th>
                             <th>Course</th>
                             <th>Duration</th>
-                            <th>Remove</th>  
-                            <th>Update</th>                      
+                            <th>Remove</th>                      
                     </tr>
                 </thead>
                     <tbody>
+                            {{#each viewAllAssign}}
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{name}}</td>
+                                <td>{{name1}}</td>
+                                <td>{{dura}}</td>
                                 <td>
                                     <button>
-                                        <a>
-                                                Remove
+                                        <a href="../staff/deleteAssign1?id={{_id}}" onclick="return confirm('Are You Sure to Delete ?')">
+                                        <img src="https://icon-library.com/images/red-recycle-bin-icon/red-recycle-bin-icon-18.jpg"
+                                            width="18" height="18">
+                                                Delete
                                         </a>
                                     </button>
-                                </td>
-                                <td>
-                                        <button>
-                                            <a>
-                                                Update
-                                            </a>
-                                    </button>
-                                </td>
+                                </td>                          
                             </tr>
+                        {{/each }}
             </tbody>
            </table>
         </div>
