@@ -20,15 +20,86 @@ async function checkUser(nameIn, passwordIn) {
     else
         return false;
 }
-async function emailFinding(emailIn){
+async function emailFinding(emailIn) {
     const dbo = await getDBO();
     const resultss = await dbo.collection("users").
-    find({email:emailIn}).toArray(); 
+    find({ email: emailIn }).toArray();
     return resultss;
 
 }
 
 /* ======== Admin  Role ========*/
+
+
+// manage staff 
+async function viewAllStaffAccount(collectionName) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({ role: 'staff' }).toArray();
+
+    return result;
+}
+
+async function createStaffAccount(collectionName, emailStaff, passwordStaff, nameStaff,
+    ageStaff, DoBStaff, educationStaff) {
+
+    const dbo = await getDBO();
+    var newStaffAccount = {
+        email: emailStaff,
+        password: passwordStaff,
+        name: nameStaff,
+        age: ageStaff,
+        DoB: DoBStaff,
+        education: educationStaff,
+        role: "staff"
+    };
+
+    await dbo.collection(collectionName).insertOne(newStaffAccount);
+}
+
+async function searchStaffAccount(collectionName, staffNameAgeSearch) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({
+        role: "staff",
+        $or: [{ name: staffNameAgeSearch }, { age: staffNameAgeSearch }]
+    }).toArray();
+
+    return result;
+}
+
+//Manage trainer
+async function viewAllTrainerAccount(collectionName) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({ role: 'trainer' }).toArray();
+
+    return result;
+}
+
+async function createTrainerAccount(collectionName, emailTrainer, passwordTrainer, nameTrainer,
+    ageTrainer, DoBTrainer, educationTrainer) {
+
+    const dbo = await getDBO();
+    var newTrainerAccount = {
+        email: emailTrainer,
+        password: passwordTrainer,
+        name: nameTrainer,
+        age: ageTrainer,
+        DoB: DoBTrainer,
+        education: educationTrainer,
+        role: "trainer"
+    };
+
+    await dbo.collection(collectionName).insertOne(newTrainerAccount);
+}
+
+async function searchTrainerAccount(collectionName, trainerNameAgeSearch) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({
+        role: "trainer",
+        $or: [{ name: trainerNameAgeSearch }, { age: trainerNameAgeSearch }]
+    }).toArray();
+
+    return result;
+}
 
 /* (END) Admin Role */
 
@@ -58,12 +129,7 @@ async function viewAllTraineeAccount(collectionName) {
 
     return result;
 }
-async function viewAllTrainerAccount(collectionName) {
-    const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({ role: 'trainer' }).toArray();
 
-    return result;
-}
 
 async function deleteFunction(collectionName, Id) {
     const dbo = await getDBO();
@@ -108,6 +174,7 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
     //     $or: [{ name: new RegExp(traineeNameAgeSearch, 'i') }, { age: traineeNameAgeSearch }]
     // }).toArray();
     const result = await dbo.collection(collectionName).find({
+        role: "trainee",
         $or: [{ name: traineeNameAgeSearch }, { age: traineeNameAgeSearch }]
     }).toArray();
 
@@ -116,7 +183,13 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
 
 async function getTraineeName(collectionName) {
     const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({}).toArray();
+    const result = await dbo.collection(collectionName).find({ role: 'trainee' }).toArray();
+    return result;
+}
+
+async function getTrainerName(collectionName) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({ role: 'trainer' }).toArray();
     return result;
 }
 
@@ -144,7 +217,7 @@ async function getData(collectionName) {
 
 async function searchAssign(collectionName, nameCourseAssign) {
     const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({ name: nameCourseAssign }).toArray();
+    const result = await dbo.collection(collectionName).find({ name1: nameCourseAssign }).toArray();
     return result;
 }
 
@@ -165,7 +238,13 @@ module.exports = {
     checkUser,
     getData,
     getTraineeName,
+    getTrainerName,
     emailFinding,
     searchAssign,
-    viewAllTrainerAccount
+    viewAllTrainerAccount,
+    viewAllStaffAccount,
+    createStaffAccount,
+    searchStaffAccount,
+    createTrainerAccount,
+    searchTrainerAccount
 }
