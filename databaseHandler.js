@@ -182,9 +182,17 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
         role: "trainee",
         $or: [{ name: traineeNameAgeSearch }, { age: traineeNameAgeSearch }]
     }).toArray();
-
     return result;
 }
+// trainer search course to show trainee: 
+async function searchTrainerCourse(collectionName,traineeCourseSearch) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({
+    name1: traineeCourseSearch
+    }).toArray();
+    return result;
+}
+
 
 async function getTraineeName(collectionName) {
     const dbo = await getDBO();
@@ -251,5 +259,6 @@ module.exports = {
     createStaffAccount,
     searchStaffAccount,
     createTrainerAccount,
-    searchTrainerAccount
+    searchTrainerAccount,
+    searchTrainerCourse
 }
