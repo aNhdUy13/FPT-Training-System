@@ -78,6 +78,8 @@ router.post('/doUpdateTraineeAccount', async(req, res) => {
         }
     }
 
+
+
     await dbHandler.doUpdateFunction("users", id, newValue);
 
     res.redirect('traineeManagement')
