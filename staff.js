@@ -114,7 +114,7 @@ router.post('/addCourseCategory', async(req, res) => {
     const nameCourseCate = req.body.txtNameCourseCategory;
     const descriptionCourseCate = req.body.txtCourseDescription;
     const dataCourseCategory = { name: nameCourseCate, description: descriptionCourseCate }
-    await dbHandler.insertCourseCategory("courseCategory", dataCourseCategory);
+    await dbHandler.insertFunction("courseCategory", dataCourseCategory);
 
     res.redirect('CourseCategory');
 
