@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Trainee</title>
+    <link rel="stylesheet" href="css/normal_layout.css" type="text/css">
+    <link rel="stylesheet" href="css/staff.css" type="text/css">
+</head>
+<body>
+</body>
+    <div class="container ">
+
+    {{> header}}
+
+    <!-- Content -->
+    <div class="main_Content">
+                <h4 style="font-size: xx-large;">View Course Trainee</h4>
+        <div class="bottomTraineeLayout">
+
+             <table border="1" cellspacing ="0 " cellpadding="15">
+                <thead>
+                    <tr>
+                            <th>Trainee Name</th>
+                            <th>Course</th>                   
+                    </tr>
+                </thead>
+                    <tbody>
+                        {{#each viewAllAssign}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{name1}}</td>                       
+                            </tr>
+                        {{/each }}
+            </tbody>
+           </table>
+        </div>
+    </div>
+
+    <!-- (End) Content -->
+
+    {{> footer}}
+
+</div>
+</html>
