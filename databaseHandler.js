@@ -107,7 +107,7 @@ async function searchTrainerAccount(collectionName, trainerNameAgeSearch) {
 
 /* ======== Staff Role ========*/
 async function createTraineeAccount(collectionName, emailTrainee, passwordTrainee, nameTrainee,
-    ageTrainee, DoBTrainee, educationTrainee) {
+    ageTrainee, DoBTrainee, educationTrainee, traineeImage) {
 
     const dbo = await getDBO();
     var newTraineeAccount = {
@@ -117,10 +117,25 @@ async function createTraineeAccount(collectionName, emailTrainee, passwordTraine
         age: ageTrainee,
         DoB: DoBTrainee,
         education: educationTrainee,
+        image: traineeImage,
         role: "trainee"
     };
 
     await dbo.collection(collectionName).insertOne(newTraineeAccount);
+}
+async function checkExistEmail(collectionName, userEmail) {
+    const dbo = await getDBO();
+
+    const result = await dbo.collection(collectionName).findOne({ email: userEmail });
+
+    var message;
+    if (result) {
+        message = "Email already in exists !";
+    } else {
+        message = "Good Email";
+    }
+    return message;
+
 }
 
 async function viewAllTraineeAccount(collectionName) {
@@ -180,10 +195,10 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
     return result;
 }
 // trainer search course to show trainee: 
-async function searchTrainerCourse(collectionName,traineeCourseSearch) {
+async function searchTrainerCourse(collectionName, traineeCourseSearch) {
     const dbo = await getDBO();
     const result = await dbo.collection(collectionName).find({
-    name1: traineeCourseSearch
+        name1: traineeCourseSearch
     }).toArray();
     return result;
 }
@@ -255,5 +270,6 @@ module.exports = {
     searchStaffAccount,
     createTrainerAccount,
     searchTrainerAccount,
-    searchTrainerCourse
+    searchTrainerCourse,
+    checkExistEmail
 }

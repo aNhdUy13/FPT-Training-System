@@ -63,6 +63,22 @@
                             <td  style="color: brown;">{{errorMessage}}</td>
 
                         </tr>
+                        {{!-- 
+                         <tr>
+                            <td>Image : </td>
+                            <td><input type="file" name="imgTrainee"></td>
+                            <td  style="color: brown;">{{errorMessage}}</td>
+
+                        </tr> 
+                        --}}
+
+                         <tr>
+                            <td>Image : </td>
+                            <td><input type="text" name="imgTrainee"></td>
+                            <td  style="color: brown;">{{errorMessage}}</td>
+
+                        </tr>
+
                         <tr>
                             <td></td>
                             <td><input type="submit" value="Insert" class="insertButton"></td>
@@ -82,6 +98,7 @@
              <table border="1" cellspacing ="0 " cellpadding="15">
                 <thead>
                     <tr>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Age</th>
@@ -94,6 +111,9 @@
                     <tbody>
                         {{#each viewAllTraineeAccount}}
                             <tr>
+                                <td>
+                                    <img src="{{image}}" alt="" width="100" height="100">
+                                </td>
                                 <td>{{name}}</td>
                                 <td>{{email}}</td>
                                 <td>{{age}}</td>

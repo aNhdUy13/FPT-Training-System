@@ -3,6 +3,11 @@ const router = express.Router();
 const dbHandler = require('./databaseHandler');
 const app = express();
 
+// const multer = require('multer');
+// fs = require('fs-extra')
+// app.use(bodyParser.urlencoded({ extended: true }))
+
+
 router.get('/', (req, res) => {
     res.render('staff/staffHome');
 })
@@ -17,6 +22,16 @@ router.get('/traineeManagement', async(req, res) => {
 })
 
 
+// var storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//         cb(null, 'uploads')
+//     },
+//     filename: function(req, file, cb) {
+//         cb(null, file.fieldname + '-' + Date.now())
+//     }
+// })
+
+// var upload = multer({ storage: storage })
 
 router.post('/doAddTraineeAccount', async(req, res) => {
 
@@ -26,23 +41,43 @@ router.post('/doAddTraineeAccount', async(req, res) => {
     var traineeAge = req.body.txtTraineeAge;
     var traineeDoB = req.body.txtTraineeDoB;
     var traineeEducation = req.body.txtTraineeEducation;
+    var traineeImage = req.body.imgTrainee;
+
+    //const checkExistEmail = await dbHandler.checkExistEmail("users", traineeEmail);
 
     if (traineeName.trim().length < 5) {
+
         res.render('staff/traineeManagement', { errorName: "Error : Name cannot lower than 5 " })
 
     } else if (traineeEmail.trim().length == 0) {
 
         res.render('staff/traineeManagement', { errorEmail: "Error : Fill the email " })
-    } else if (traineePassword.trim().length == 0) {
+    }
+    //  else if (checkExistEmail == "Email already in exists !") {
+
+    //     res.render('staff/traineeManagement', { errorEmail: "Error : Email already in exists !!" })
+    // }
+    else if (traineePassword.trim().length == 0) {
+
         res.render('staff/traineeManagement', { errorPassword: "Error : Fill the password " })
     } else if (traineeAge.trim().length == 0 || isNaN(traineeAge) == true) {
 
         res.render('staff/traineeManagement', { errorAge: "Error : Fill the age and it must be integer " })
     } else if (traineeAge < 0) {
+
         res.render('staff/traineeManagement', { errorAge: "Error : Age cannot < 0 " })
-    } else {
+    } else if (traineeImage.trim().length == "") {
+
+        traineeImage = "https://cdn-icons-png.flaticon.com/128/320/320369.png";
         await dbHandler.createTraineeAccount("users", traineeEmail, traineePassword, traineeName,
-            traineeAge, traineeDoB, traineeEducation);
+            traineeAge, traineeDoB, traineeEducation, traineeImage);
+
+        res.redirect('traineeManagement');
+
+    } else {
+
+        await dbHandler.createTraineeAccount("users", traineeEmail, traineePassword, traineeName,
+            traineeAge, traineeDoB, traineeEducation, traineeImage);
 
         res.redirect('traineeManagement');
     }
@@ -66,6 +101,7 @@ router.post('/doUpdateTraineeAccount', async(req, res) => {
     const ageUpdated = req.body.txtUpdateTraineeAge;
     const dobUpdated = req.body.txtUpdateTraineeDoB;
     const educationUpdated = req.body.txtUpdateTraineeEducation;
+    const imageUpdated = req.body.txtUpdateTraineeImage;
 
 
     const newValue = {
@@ -74,7 +110,8 @@ router.post('/doUpdateTraineeAccount', async(req, res) => {
             name: nameUpdated,
             age: ageUpdated,
             DoB: dobUpdated,
-            education: educationUpdated
+            education: educationUpdated,
+            //image: imageUpdated
         }
     }
 
@@ -179,31 +216,31 @@ router.get('/deleteCourse', async(req, res) => {
     res.redirect('Course')
 })
 router.get('/Course', async(req, res) => {
-        const result = await dbHandler.viewAll("course");
-        const result1 = await dbHandler.viewAll("courseCategory");
+    const result = await dbHandler.viewAll("course");
+    const result1 = await dbHandler.viewAll("courseCategory");
 
-        res.render('staff/Course', { viewAll: result, viewCourseCate: result1 });
+    res.render('staff/Course', { viewAll: result, viewCourseCate: result1 });
+})
+router.get('/updateCourse', async(req, res) => {
+
+    const id = req.query.id;
+    const result1 = await dbHandler.viewAll("courseCategory");
+
+    var editCourse = await dbHandler.updateFunction("course", id);
+    res.render('staff/updateCourse', { course: editCourse, viewCourseCate: result1 })
+
+})
+router.post('/doupdateCourse', async(req, res) => {
+        const id = req.body.id;
+        const nameCourse = req.body.txtNameCourse;
+        const desCourse = req.body.txtDesCourse;
+
+        const editCourse = { $set: { name: nameCourse, description: desCourse } };
+        await dbHandler.doUpdateFunction("course", id, editCourse);
+        res.redirect('Course')
     })
-    router.get('/updateCourse', async(req, res) => {
-
-        const id = req.query.id;
-        const result1 = await dbHandler.viewAll("courseCategory");
-
-        var editCourse = await dbHandler.updateFunction("course", id);
-        res.render('staff/updateCourse', { course: editCourse, viewCourseCate: result1})
-    
-    })
-    router.post('/doupdateCourse', async(req, res) => {
-            const id = req.body.id;
-            const nameCourse = req.body.txtNameCourse;
-            const desCourse = req.body.txtDesCourse;
-            
-            const editCourse = { $set: { name: nameCourse, description: desCourse } };
-            await dbHandler.doUpdateFunction("course", id, editCourse);
-            res.redirect('Course')
-        })
-// Hoang END
-// Tan - assign Trainer, Trainee a Course
+    // Hoang END
+    // Tan - assign Trainer, Trainee a Course
 
 router.post('/searchAssign', async(req, res) => {
     const nameCourseA = req.body.txtNameCourseAssign;
@@ -267,13 +304,13 @@ router.post('/addAssign1', async(req, res) => {
 })
 
 router.get('/deleteAssign1', async(req, res) => {
-    const id = req.query.id;
+        const id = req.query.id;
 
-    await dbHandler.deleteFunction("assignCourse1", id);
-    res.redirect('AssignTrainer')
-})
+        await dbHandler.deleteFunction("assignCourse1", id);
+        res.redirect('AssignTrainer')
+    })
     /* Regarding Css */
-    router.use(express.static('public'));
+router.use(express.static('public'));
 
-    /* (End) Regarding Css */
+/* (End) Regarding Css */
 module.exports = router;
