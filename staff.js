@@ -159,7 +159,7 @@ router.post('/addCourse', async(req, res) => {
     const courseCategory = req.body.txtCourseCategory;
     const descriptionCourse = req.body.txtCourseDescription;
     const dataCourseCategory = { name: nameCourse, courseCategory: courseCategory, description: descriptionCourse }
-    await dbHandler.insertCourseCategory("course", dataCourseCategory);
+    await dbHandler.insertFunction("course", dataCourseCategory);
 
     res.redirect('Course');
 
@@ -177,15 +177,31 @@ router.get('/deleteCourse', async(req, res) => {
     res.redirect('Course')
 })
 router.get('/Course', async(req, res) => {
-        const result = await dbHandler.viewAll("course")
-        res.render('staff/Course', { viewAll: result });
-    }) // Hoang END
-    /* Regarding Css */
-router.use(express.static('public'));
+        const result = await dbHandler.viewAll("course");
+        const result1 = await dbHandler.viewAll("courseCategory");
 
-/* (End) Regarding Css */
+        res.render('staff/Course', { viewAll: result, viewCourseCate: result1 });
+    })
+    router.get('/updateCourse', async(req, res) => {
 
-- // Tan - assign Trainer, Trainee a Course
+        const id = req.query.id;
+        const result1 = await dbHandler.viewAll("courseCategory");
+
+        var editCourse = await dbHandler.updateFunction("course", id);
+        res.render('staff/updateCourse', { course: editCourse, viewCourseCate: result1})
+    
+    })
+    router.post('/doupdateCourse', async(req, res) => {
+            const id = req.body.id;
+            const nameCourse = req.body.txtNameCourse;
+            const desCourse = req.body.txtDesCourse;
+            
+            const editCourse = { $set: { name: nameCourse, description: desCourse } };
+            await dbHandler.doUpdateFunction("course", id, editCourse);
+            res.redirect('Course')
+        })
+// Hoang END
+// Tan - assign Trainer, Trainee a Course
 
 router.post('/searchAssign', async(req, res) => {
     const nameCourse = req.body.txtNameCourse;
@@ -227,5 +243,8 @@ router.get('/AssignTrainer', async(req, res) => {
 
     res.render('staff/AssignTrainer')
 })
+    /* Regarding Css */
+    router.use(express.static('public'));
 
+    /* (End) Regarding Css */
 module.exports = router;
