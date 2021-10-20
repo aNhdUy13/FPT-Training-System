@@ -168,6 +168,17 @@ async function updateFunction(collectionName, Id) {
     return traineeAccountToEdit;
 }
 
+async function updateFunctionTrainer(collectionName, Id) {
+    const dbo = await getDBO();
+
+    var ObectID = require('mongodb').ObjectID;
+    // Lấy Id gửi về
+    const condition = { "_id": ObectID(Id) };
+
+    const trainerAccountToEdit = await dbo.collection(collectionName).findOne(condition);
+    return trainerAccountToEdit;
+}
+
 async function doUpdateFunction(collectionName, Id, newValues) {
     const dbo = await getDBO();
 
@@ -271,5 +282,6 @@ module.exports = {
     createTrainerAccount,
     searchTrainerAccount,
     searchTrainerCourse,
-    checkExistEmail
+    checkExistEmail,
+    updateFunctionTrainer
 }

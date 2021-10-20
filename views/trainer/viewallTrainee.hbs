@@ -11,6 +11,7 @@
 <body>
 </body>
     <div class="container ">
+
     {{> header}}
 
     <!-- Content -->
@@ -18,39 +19,23 @@
 
         <div class="topTraineeLayout">
             <div class="tableAddTrainee">
-                <h4 style="font-size: xx-large;">View all Trainees In Course</h4>
-                <table>
-                    <form  action="../staff/addAssign" method="post">
-                        <tr>
-                            <td>Course Name: </td>
-                            <td>
-                                <select name="txtNameCourseAssign">
-                                    <option selected>Select a Course</option>
-                                    {{#each getAllCourse}}
-                                        <option value="{{name}}">{{name}}</option>
-                                    {{/each}}
-                                </select>
-                            </td>                      
-                        </tr>
-                        <td></td>
-                            <td><input type="submit" value="Insert" class="insertButton"></td>
-                    </form>
-                </table>
+                <h4 style="font-size: xx-large;">Assign Trainee to a Course</h4>
+
             </div>
         </div>
 
         <div class="bottomTraineeLayout">
-            <form method="POST" action="../staff/searchAssign">
-                <input class="traineeSearchBar" type="text" name="txtNameCourse" style="width: 350px;">
+            <form method="POST" action="../trainer/searchTrainerCourse">
+                <input class="traineeSearchBar" type="text" name="txtTraineeCourseSearch" style="width: 350px;">
                 <input type="submit" value="Search">          
             </form>
 
-             <table border="1" cellspacing ="0 " cellpadding="15">
+                          <table border="1" cellspacing ="0 " cellpadding="15">
                 <thead>
                     <tr>
                             <th>Trainee Name</th>
                             <th>Course</th>
-                            <th>Duration</th>                  
+                            <th>Duration</th>                   
                     </tr>
                 </thead>
                     <tbody>
@@ -58,14 +43,13 @@
                             <tr>
                                 <td>{{name}}</td>
                                 <td>{{name1}}</td>
-                                <td>{{dura}}</td>                        
+                                <td>{{dura}}</td>
                             </tr>
                         {{/each }}
             </tbody>
            </table>
         </div>
     </div>
-
     <!-- (End) Content -->
 
     {{> footer}}

@@ -17,7 +17,7 @@ router.post('/viewAllTrainerAccount',async (req,res)=>{
     const roleInput = req.body.txtRole;
     const newValues ={$set : {id:id, name: nameInput,age: ageInput, dob: dobInput, education: educationInput, role : roleInput}};   
     await dbHandler.viewAllTrainerAccount("users", newValues);
-    res.redirect('/');
+    res.redirect('/trainer/trainerHome');
 })
 
 router.get('/trainerHome', async(req, res) => {
@@ -41,5 +41,37 @@ router.post('/searchTrainerCourse', async(req, res) => {
     console.log(result);
 })
 
+
+router.get('/updateTrainerAccount', async(req, res) => {
+
+    const id = req.query.id;
+
+    var trainerAccountToEdit = await dbHandler.updateFunctionTrainer("users", id);
+    res.render('trainer/updateTrainerAccount', { trainerDetail: trainerAccountToEdit })
+
+})
+
+router.post('/doUpdateTrainerAccount', async(req, res) => {
+    const id = req.body.id;
+    const nameUpdated = req.body.txtUpdateTrainerName;
+    const emailUpdated = req.body.txtUpdateTrainerEmail;
+    const ageUpdated = req.body.txtUpdateTrainerAge;
+    const dobUpdated = req.body.txtUpdateTrainerDoB;
+    const educationUpdated = req.body.txtUpdateTrainerEducation;
+    //const imageUpdated = req.body.txtUpdateTraineeImage;
+    const newValue = {
+        $set: {
+            email: emailUpdated,
+            name: nameUpdated,
+            age: ageUpdated,
+            DoB: dobUpdated,
+            education: educationUpdated,
+            //image: imageUpdated
+        }
+    }
+    await dbHandler.doUpdateFunction("users", id, newValue);
+    res.redirect('trainerHome')
+});
 module.exports = router;
+
 
