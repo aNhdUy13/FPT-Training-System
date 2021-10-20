@@ -4,52 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Assign Trainer</title>
     <link rel="stylesheet" href="/css/normal_layout.css" type="text/css">
-    <link rel="stylesheet" href="/css/trainer.css" type="text/css">
+    <link rel="stylesheet" href="/css/staff.css" type="text/css">
 </head>
 <body>
+</body>
     <div class="container ">
 
     {{> header}}
 
     <!-- Content -->
     <div class="main_Content">
+
         <div class="bottomTraineeLayout">
              <table border="1" cellspacing ="0 " cellpadding="15">
                 <thead>
                     <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>DoB</th>
-                            <th>Education</th>
-                            <th>Role</th>   
-                            <th>Update</th>                         
+                            <th>Trainer Name</th>
+                            <th>Course</th>
+                            <th>Duration</th>      
+                            <th>View Trainees In Course</th>                
                     </tr>
                 </thead>
-                <tbody>
-                        {{#each viewAllTrainerAccount}}
+                    <tbody>
+                            {{#each viewAllAssign1}}
                             <tr>
                                 <td>{{name}}</td>
-                                <td>{{age}}</td>
-                                <td>{{DoB}}</td>     
-                                <td>{{education}}</td>
-                                <td>{{role}}</td> 
+                                <td>{{name1}}</td>
+                                <td>{{dura}}</td>  
                                 <td>
                                     <button>
-                                        <a href="../trainee/updateTrainerAccount?id={{_id}}">                                      
-                                        Update
+                                        <a href="../trainer/viewAllTrainee">                                      
+                                        View
                                         </a>
                                     </button>
-                                </td>                    
+                                </td>           
                             </tr>
                         {{/each }}
-                </tbody>
+            </tbody>
            </table>
         </div>
     </div>
+
+    <!-- (End) Content -->
+
     {{> footer}}
 
 </div>
-</body>
 </html>

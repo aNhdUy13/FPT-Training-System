@@ -16,6 +16,9 @@
     <!-- Content -->
     <div class="main_Content">
         <div class="bottomTraineeLayout">
+            <div style="text-align: center">
+                <h2>View Trainee's Information</h2>
+            </div>
              <table border="1" cellspacing ="0 " cellpadding="15">
                 <thead>
                     <tr>
@@ -24,7 +27,7 @@
                             <th>DoB</th>
                             <th>Education</th>
                             <th>Role</th>     
-                            <th>Update</th>   
+                            <th>View</th>   
                                                 
                     </tr>
                 </thead>
@@ -38,12 +41,11 @@
                                 <td>{{role}}</td> 
                                 <td>
                                     <button>
-                                        <a href="../staff/updateTraineeAccount?id={{_id}}">                                      
-                                        Update
+                                        <a href="viewCourseTrainee">                                      
+                                        View Course
                                         </a>
                                     </button>
-                                </td>
-                                                                                  
+                                </td>                                                                                 
                             </tr>
                         {{/each }}
                 </tbody>

@@ -170,9 +170,7 @@ async function updateFunction(collectionName, Id) {
 
 async function updateFunctionTrainer(collectionName, Id) {
     const dbo = await getDBO();
-
     var ObectID = require('mongodb').ObjectID;
-    // Lấy Id gửi về
     const condition = { "_id": ObectID(Id) };
 
     const trainerAccountToEdit = await dbo.collection(collectionName).findOne(condition);
@@ -185,7 +183,6 @@ async function doUpdateFunction(collectionName, Id, newValues) {
     var ObectID = require('mongodb').ObjectID;
     // Lấy Id gửi về
     const condition = { "_id": ObectID(Id) };
-
     await dbo.collection(collectionName).updateOne(condition, newValues);
 
 }
