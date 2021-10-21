@@ -1,15 +1,14 @@
 const express = require('express');
 const hbs = require('hbs');
-
+const path = require('path');
 const app = express();
 app.set('view engine', 'hbs');
 
-hbs.registerPartials(__dirname + '../views/partial')
-console.log(__dirname + '../views/partial');
+const viewPath = path.join(__dirname, 'views/partial')
+hbs.registerPartials(viewPath)
 
-var bodyParser = require("body-parser");
 //const { Console } = require('console');
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 const dbHandler = require('./databaseHandler');
 
