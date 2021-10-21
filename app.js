@@ -5,6 +5,7 @@ const app = express();
 app.set('view engine', 'hbs');
 
 hbs.registerPartials(__dirname + '/views/partial')
+console.log(__dirname);
 
 var bodyParser = require("body-parser");
 //const { Console } = require('console');
