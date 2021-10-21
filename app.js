@@ -24,14 +24,14 @@ app.get('/home', (req, res) => {
 var adminController = require('./admin.js');
 app.use('/admin', adminController);
 
-var adminController = require('./staff.js');
-app.use('/staff', adminController);
+var staffController = require('./staff.js');
+app.use('/staff', staffController);
 
-var adminController = require('./trainer.js');
-app.use('/trainer', adminController);
+var trainerController = require('./trainer.js');
+app.use('/trainer', trainerController);
 
-var adminController = require('./trainee.js');
-app.use('/trainee', adminController);
+var traineeController = require('./trainee.js');
+app.use('/trainee', traineeController);
 
 
 
