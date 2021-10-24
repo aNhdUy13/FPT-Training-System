@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Assign Trainee</title>
     <link rel="stylesheet" href="css/normal_layout.css" type="text/css">
     <link rel="stylesheet" href="css/staff.css" type="text/css">
+=======
+    <title>View All Trainee</title>
+    <link rel="stylesheet" href="/css/normal_layout.css" type="text/css">
+    <link rel="stylesheet" href="/css/staff.css" type="text/css">
+>>>>>>> afbd4f18e1393872f7c82cfc58091ee52ff753de
 </head>
 <body>
 </body>
@@ -17,41 +23,22 @@
     <!-- Content -->
     <div class="main_Content">
 
-        <div class="topTraineeLayout">
-            <div class="tableAddTrainee">
-                <h4 style="font-size: xx-large;">View all Trainees In Course</h4>
-                <table>
-                    <form  action="../staff/addAssign" method="post">
-                        <tr>
-                            <td>Course Name: </td>
-                            <td>
-                                <select name="txtNameCourseAssign">
-                                    <option selected>Select a Course</option>
-                                    {{#each getAllCourse}}
-                                        <option value="{{name}}">{{name}}</option>
-                                    {{/each}}
-                                </select>
-                            </td>                      
-                        </tr>
-                        <td></td>
-                            <td><input type="submit" value="Insert" class="insertButton"></td>
-                    </form>
-                </table>
-            </div>
+        <div>       
+                <h4 style="font-size: xx-large;">All Trainee</h4>       
         </div>
 
         <div class="bottomTraineeLayout">
-            <form method="POST" action="../staff/searchAssign">
-                <input class="traineeSearchBar" type="text" name="txtNameCourse" style="width: 350px;">
+            <form method="POST" action="../trainer/searchTrainerCourse">
+                <input class="traineeSearchBar" type="text" name="txtTraineeCourseSearch" style="width: 350px;">
                 <input type="submit" value="Search">          
             </form>
 
-             <table border="1" cellspacing ="0 " cellpadding="15">
+                          <table border="1" cellspacing ="0 " cellpadding="15">
                 <thead>
                     <tr>
                             <th>Trainee Name</th>
                             <th>Course</th>
-                            <th>Duration</th>                  
+                            <th>Duration</th>                   
                     </tr>
                 </thead>
                     <tbody>
@@ -59,14 +46,13 @@
                             <tr>
                                 <td>{{name}}</td>
                                 <td>{{name1}}</td>
-                                <td>{{dura}}</td>                        
+                                <td>{{dura}}</td>
                             </tr>
                         {{/each }}
             </tbody>
            </table>
         </div>
     </div>
-
     <!-- (End) Content -->
 
     {{> footer}}

@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trainee Management</title>
-    <link rel="stylesheet" href="css/normal_layout.css" type="text/css">
-    <link rel="stylesheet" href="css/staff.css" type="text/css">
+    <link rel="stylesheet" href="/css/normal_layout.css" type="text/css">
+    <link rel="stylesheet" href="/css/staff.css" type="text/css">
 
 </head>
 
@@ -24,7 +24,7 @@
                 <h4>Update Trainer Account</h4>
 
                 <table>
-                    <form action="../staff/doUpdateTraineeAccount" method="post">
+                    <form action="../trainer/doUpdateTrainerAccount" method="post">
                     <td><input type="hidden" name="id" value="{{trainerDetail._id}}"></td>
 
                      <tr>
@@ -49,21 +49,20 @@
 
                      <tr>
                         <td>Date of Birth : </td>
-                        <td><input type="text" name="txtUpdateTraineeDoB" value="{{trainerDetail.DoB}}"></td>
+                        <td><input type="text" name="txtUpdateTrainerDoB" value="{{trainerDetail.DoB}}"></td>
                         <td  style="color: brown;">{{errorPrice}}</td>
 
                     </tr>
                     
                      <tr>
                         <td>Education : </td>
-                        <td><input type="text" name="txtUpdateTraineeEducation" value="{{trainerDetail.education}}"></td>
+                        <td><input type="text" name="txtUpdateTrainerEducation" value="{{trainerDetail.education}}"></td>
                         <td  style="color: brown;">{{errorPrice}}</td>
 
                     </tr>
                     <tr>
                         <td></td>
                         <td><input type="submit" value="Update" class="updateButton"></td>
-
                     </tr>
                 </form>
                 </table>
@@ -71,10 +70,11 @@
         </div>
 
     </div>
-
-    <!-- (End) Content -->
+    <!-- (End) Content -->  
 
     {{> footer}}
 
 </div>
+
+
 </html>
