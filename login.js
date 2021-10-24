@@ -23,9 +23,9 @@ router.post('/doLogin', async(req, res) => {
         var findEmail = await dbHandler.emailFinding(nameInput);
         req.session.username=nameInput;
         if (findEmail[0].role == "trainee") {
-            res.render('trainee/traineeHome');
+            res.render('trainee/traineePage');
         } else if (findEmail[0].role == "trainer") {
-            res.render('trainer/trainerHome')
+            res.render('trainer/trainerPage')
         } else if (findEmail[0].role == "staff") {
             res.render('staff/staffHome')
         } else if (findEmail[0].role == "admin") {

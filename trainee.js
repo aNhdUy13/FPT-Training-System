@@ -3,8 +3,14 @@ const router = express.Router();
 
 const dbHandler = require('./databaseHandler');
 
+
 router.get('/', (req, res) => {
+<<<<<<< HEAD
     res.render('trainee/traineeHome');
+=======
+    res.render('trainee/traineePage');
+
+>>>>>>> 19115cb1b48ceef3567054ca6cbf17376ef91cc4
 })
 
 router.get('/traineeHome', async(req, res) => {
