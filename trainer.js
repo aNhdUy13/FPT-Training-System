@@ -3,7 +3,9 @@ const router = express.Router();
 
 const dbHandler = require('./databaseHandler');
 
-
+router.get('/', (req, res) => {
+    res.render('trainer/trainerPage');
+})
 
 
 router.post('/viewAllTrainerAccount',async (req,res)=>{
@@ -18,7 +20,7 @@ router.post('/viewAllTrainerAccount',async (req,res)=>{
     res.redirect('/trainer/trainerHome');
 })
 
-router.get('/', async(req, res) => {
+router.get('/trainerHome', async(req, res) => {
     const newValues = await dbHandler.viewAllTrainerAccount("users")
     res.render('trainer/trainerHome', { viewAllTrainerAccount: newValues });
 })
