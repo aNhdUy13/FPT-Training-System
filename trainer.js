@@ -18,7 +18,7 @@ router.post('/viewAllTrainerAccount',async (req,res)=>{
     res.redirect('/trainer/trainerHome');
 })
 
-router.get('trainerHome', async(req, res) => {
+router.get('/', async(req, res) => {
     const newValues = await dbHandler.viewAllTrainerAccount("users")
     res.render('trainer/trainerHome', { viewAllTrainerAccount: newValues });
 })
