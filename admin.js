@@ -1,10 +1,19 @@
 const express = require('express');
 const router = express.Router();
-
+const session=require('express-session');
 const dbHandler = require('./databaseHandler');
 
+// session middle ware
+router.use(session({
+    resave:true,
+    saveUninitialized:true,
+    secret:'group2huhuhu',
+    cookie:{maxAge:60000}
+}))
 
 router.get('/', (req, res) => {
+    if(!req.session.username)
+        res.render('login')
     res.render('admin/adminHome');
 })
 // START STAFF ROLE

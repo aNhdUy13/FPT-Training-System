@@ -3,9 +3,18 @@ const hbs = require('hbs');
 const path = require('path');
 const app = express();
 app.set('view engine', 'hbs');
+const session=require('express-session');
 
 const viewPath = path.join(__dirname, 'views/partial')
 hbs.registerPartials(viewPath)
+
+// session middle ware
+app.use(session({
+    resave:true,
+    saveUninitialized:true,
+    secret:'group2huhuhu',
+    cookie:{maxAge:60000}
+}))
 
 //const { Console } = require('console');
 app.use(express.urlencoded({ extended: false }));
