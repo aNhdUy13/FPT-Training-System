@@ -8,18 +8,19 @@ router.use(session({
     resave:true,
     saveUninitialized:true,
     secret:'group2huhuhu',
-    cookie:{maxAge:60000}
+    cookie:{maxAge:100000}
 }))
 
 router.get('/', (req, res) => {
     if(!req.session.username)
-        res.render('login')
+        return res.render('login')
     res.render('admin/adminHome');
 })
 // START STAFF ROLE
 router.get('/staffManagement', async(req, res) => {
     const result = await dbHandler.viewAllStaffAccount("users")
-
+    if(!req.session.username)
+        return res.render('login')
     res.render('admin/staffManagement', { viewAllStaffAccount: result });
 })
 

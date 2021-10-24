@@ -2,13 +2,22 @@ const express = require('express');
 const router = express.Router();
 const dbHandler = require('./databaseHandler');
 const app = express();
-
+const session=require('express-session');
 // const multer = require('multer');
 // fs = require('fs-extra')
 // app.use(bodyParser.urlencoded({ extended: true }))
 
+// session middle ware
+router.use(session({
+    resave:true,
+    saveUninitialized:true,
+    secret:'group2huhuhu',
+    cookie:{maxAge:100000}
+}))
 
 router.get('/', (req, res) => {
+    if(!req.session.username)
+        return res.render('login')
     res.render('staff/staffHome');
 })
 
@@ -17,7 +26,8 @@ router.get('/', (req, res) => {
  */
 router.get('/traineeManagement', async(req, res) => {
     const result = await dbHandler.viewAllTraineeAccount("users")
-
+    if(!req.session.username)
+        return res.render('login')
     res.render('staff/traineeManagement', { viewAllTraineeAccount: result });
 })
 
@@ -90,6 +100,8 @@ router.get('/updateTraineeAccount', async(req, res) => {
     const id = req.query.id;
 
     var traineeAccountToEdit = await dbHandler.updateFunction("users", id);
+    if(!req.session.username)
+        return res.render('login')
     res.render('staff/updateTraineeAccount', { traineeDetail: traineeAccountToEdit })
 
 })
@@ -126,6 +138,8 @@ router.get('/deleteTraineeAccount', async(req, res) => {
     const id = req.query.id;
 
     await dbHandler.deleteFunction("users", id);
+    if(!req.session.username)
+        return res.render('login')
     res.redirect('traineeManagement')
 })
 
@@ -160,6 +174,8 @@ router.get('/deleteCourseCategory', async(req, res) => {
     const id = req.query.id;
 
     await dbHandler.deleteFunction("courseCategory", id);
+    if(!req.session.username)
+        return res.render('login')
     res.redirect('CourseCategory')
 })
 router.post('/searchCourseCategory', async(req, res) => {
@@ -172,7 +188,8 @@ router.post('/searchCourseCategory', async(req, res) => {
 
 router.get('/CourseCategory', async(req, res) => {
     const result = await dbHandler.viewAll("courseCategory")
-
+    if(!req.session.username)
+        return res.render('login')
     res.render('staff/CourseCategory', { viewAllCourseCategory: result });
 })
 router.get('/updateCourseCategory', async(req, res) => {
@@ -180,6 +197,8 @@ router.get('/updateCourseCategory', async(req, res) => {
     const id = req.query.id;
 
     var editCourseCategory = await dbHandler.updateFunction("courseCategory", id);
+    if(!req.session.username)
+        return res.render('login')
     res.render('staff/updateCourseCategory', { courseCategory: editCourseCategory })
 
 })
@@ -213,12 +232,15 @@ router.get('/deleteCourse', async(req, res) => {
     const id = req.query.id;
 
     await dbHandler.deleteFunction("course", id);
+    if(!req.session.username)
+        return res.render('login')
     res.redirect('Course')
 })
 router.get('/Course', async(req, res) => {
     const result = await dbHandler.viewAll("course");
     const result1 = await dbHandler.viewAll("courseCategory");
-
+    if(!req.session.username)
+    return res.render('login')
     res.render('staff/Course', { viewAll: result, viewCourseCate: result1 });
 })
 router.get('/updateCourse', async(req, res) => {
@@ -227,6 +249,8 @@ router.get('/updateCourse', async(req, res) => {
     const result1 = await dbHandler.viewAll("courseCategory");
 
     var editCourse = await dbHandler.updateFunction("course", id);
+    if(!req.session.username)
+        return res.render('login')
     res.render('staff/updateCourse', { course: editCourse, viewCourseCate: result1 })
 
 })
@@ -255,7 +279,8 @@ router.get('/AssignTrainee', async(req, res) => {
     const result1 = await dbHandler.viewAll("users");
     const getTraineeName = await dbHandler.getTraineeName("users");
     const result2 = await dbHandler.viewAll("assignCourse");
-
+    if(!req.session.username)
+        return res.render('login')
     res.render('staff/AssignTrainee', { viewAllAssign: result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse: getCourse, getAllTrainee: getTraineeName });
 })
 
@@ -273,6 +298,8 @@ router.get('/deleteAssign', async(req, res) => {
     const id = req.query.id;
 
     await dbHandler.deleteFunction("assignCourse", id);
+    if(!req.session.username)
+        return res.render('login')
     res.redirect('AssignTrainee')
 })
 
@@ -289,7 +316,8 @@ router.get('/AssignTrainer', async(req, res) => {
     const result1 = await dbHandler.viewAll("users");
     const getTrainerName = await dbHandler.getTrainerName("users");
     const result2 = await dbHandler.viewAll("assignCourse1");
-
+    if(!req.session.username)
+        return res.render('login')
     res.render('staff/AssignTrainer', { viewAllAssign: result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse: getCourse, getAllTrainee: getTrainerName });
 })
 
