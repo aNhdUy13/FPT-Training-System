@@ -5,7 +5,7 @@ const dbHandler = require('./databaseHandler');
 
 
 
-router.get('/traineeHome', async(req, res) => {
+router.get('traineeHome', async(req, res) => {
     const newValues = await dbHandler.viewAllTraineeAccount("users")
     res.render('trainee/traineeHome', { viewAllTraineeAccount: newValues });
 })
