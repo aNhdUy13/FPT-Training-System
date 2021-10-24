@@ -1,14 +1,14 @@
 const express = require('express');
 const hbs = require('hbs');
-
+const path = require('path');
 const app = express();
 app.set('view engine', 'hbs');
 
-hbs.registerPartials(__dirname + '/views/partial')
+const viewPath = path.join(__dirname, 'views/partial')
+hbs.registerPartials(viewPath)
 
-var bodyParser = require("body-parser");
 //const { Console } = require('console');
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 const dbHandler = require('./databaseHandler');
 
@@ -24,14 +24,14 @@ app.get('/home', (req, res) => {
 var adminController = require('./admin.js');
 app.use('/admin', adminController);
 
-var adminController = require('./staff.js');
-app.use('/staff', adminController);
+var staffController = require('./staff.js');
+app.use('/staff', staffController);
 
-var adminController = require('./trainer.js');
-app.use('/trainer', adminController);
+var trainerController = require('./trainer.js');
+app.use('/trainer', trainerController);
 
-var adminController = require('./trainee.js');
-app.use('/trainee', adminController);
+var traineeController = require('./trainee.js');
+app.use('/trainee', traineeController);
 
 
 
