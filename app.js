@@ -44,12 +44,7 @@ app.use('/trainee', traineeController);
 
 
 
-/* Regarding Css */
 app.use(express.static('public'));
-
-/* (End) Regarding Css */
-
-// Hoang
 
 
 const PORT = 5000;
