@@ -17,7 +17,6 @@ router.get('/', (req, res) => {
     res.render('trainer/trainerPage');
 })
 
-
 router.post('/viewAllTrainerAccount',async (req,res)=>{
     const id = req.body.id;
     const nameInput = req.body.txtName;
