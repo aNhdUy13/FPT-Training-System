@@ -257,9 +257,10 @@ router.get('/updateCourse', async(req, res) => {
 router.post('/doupdateCourse', async(req, res) => {
         const id = req.body.id;
         const nameCourse = req.body.txtNameCourse;
+        const courseCate = req.body.txtCourseCategory;
         const desCourse = req.body.txtDesCourse;
 
-        const editCourse = { $set: { name: nameCourse, description: desCourse } };
+        const editCourse = { $set: { name: nameCourse,courseCategory: courseCate, description: desCourse } };
         await dbHandler.doUpdateFunction("course", id, editCourse);
         res.redirect('Course')
     })
