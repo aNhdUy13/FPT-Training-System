@@ -12,7 +12,7 @@ router.use(session({
     resave:true,
     saveUninitialized:true,
     secret:'group2huhuhu',
-    cookie:{maxAge:100000}
+    cookie:{maxAge:1000000}
 }))
 
 router.get('/', (req, res) => {
