@@ -13,7 +13,7 @@ app.use(session({
     resave:true,
     saveUninitialized:true,
     secret:'group2huhuhu',
-    cookie:{maxAge:3600000}
+    cookie:{maxAge:3600000}// thoi gian: 1 tieng 60x60x1000=3600000 
 }))
 
 //const { Console } = require('console');
