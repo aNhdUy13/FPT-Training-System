@@ -37,4 +37,8 @@ router.post('/doLogin', async(req, res) => {
     }
 })
 
+router.post('/doLogout', async(req, res) => {
+    res.render('login');
+})
+
 module.exports = router;
