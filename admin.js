@@ -1,16 +1,26 @@
 const express = require('express');
 const router = express.Router();
-
+const session=require('express-session');
 const dbHandler = require('./databaseHandler');
 
+// session middle ware
+router.use(session({
+    resave:true,
+    saveUninitialized:true,
+    secret:'group2huhuhu',
+    cookie:{maxAge:3600000}
+}))
 
 router.get('/', (req, res) => {
+    if(!req.session.username)
+        return res.render('login')
     res.render('admin/adminHome');
 })
 // START STAFF ROLE
 router.get('/staffManagement', async(req, res) => {
     const result = await dbHandler.viewAllStaffAccount("users")
-
+    if(!req.session.username)
+        return res.render('login')
     res.render('admin/staffManagement', { viewAllStaffAccount: result });
 })
 

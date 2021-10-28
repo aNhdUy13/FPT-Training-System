@@ -1,12 +1,21 @@
 const express = require('express');
 const router = express.Router();
-
+const session=require('express-session');
 const dbHandler = require('./databaseHandler');
 
-router.get('/', (req, res) => {
-    res.render('trainer/Home');
-})
+// session middle ware
+router.use(session({
+    resave:true,
+    saveUninitialized:true,
+    secret:'group2huhuhu',
+    cookie:{maxAge:3600000}
+}))
 
+router.get('/', (req, res) => {
+    if(!req.session.username)
+        return res.render('login')
+    res.render('trainer/trainerPage');
+})
 
 router.post('/viewAllTrainerAccount',async (req,res)=>{
     const id = req.body.id;
@@ -22,6 +31,8 @@ router.post('/viewAllTrainerAccount',async (req,res)=>{
 
 router.get('/trainerHome', async(req, res) => {
     const newValues = await dbHandler.viewAllTrainerAccount("users")
+    if(!req.session.username)
+        return res.render('login')
     res.render('trainer/trainerHome', { viewAllTrainerAccount: newValues });
 })
 
@@ -31,6 +42,8 @@ router.get('/viewAllTrainee', async(req, res) => {
     const result1 = await dbHandler.viewAll("users");
     const getTraineeName = await dbHandler.getTraineeName("users");
     const result2 = await dbHandler.viewAll("assignCourse");
+    if(!req.session.username)
+        return res.render('login')
     res.render('trainer/viewAllTrainee', { viewAllAssign: result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse: getCourse, getAllTrainee: getTraineeName  });
 })
 
@@ -40,6 +53,8 @@ router.get('/viewCourse', async(req, res) => {
     const result1 = await dbHandler.viewAll("users");
     const getTrainerName = await dbHandler.getTrainerName("users");
     const result2 = await dbHandler.viewAll("assignCourse1");
+    if(!req.session.username)
+        return res.render('login')
     res.render('trainer/viewCourse', { viewAllAssign1: result2, viewAll: result, viewAllTraineeAccount: result1, getAllCourse: getCourse, getAllTrainer: getTrainerName  });
 })
 
@@ -55,6 +70,8 @@ router.get('/updateTrainerAccount', async(req, res) => {
 
     const id = req.query.id;
     var trainerAccountToEdit = await dbHandler.updateFunctionTrainer("users", id);
+    if(!req.session.username)
+        return res.render('login')
     res.render('trainer/updateTrainerAccount', { trainerDetail: trainerAccountToEdit })
 })
 
