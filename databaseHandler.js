@@ -193,13 +193,17 @@ async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
     // search gần đúng (var re = /\w+\s/g ; g = global ; )
     //const searchCondition = new RegExp(collectionName, 'i') // i = case-insensitive (k phân biệt chữ hoa thường)
     //const result = await dbo.collection(collectionName).find({ name: nameSearch }).toArray();
+
     // const result = await dbo.collection(collectionName).find({
-    //     $or: [{ name: new RegExp(traineeNameAgeSearch, 'i') }, { age: traineeNameAgeSearch }]
+    //     role: "trainee",
+    //     $or: [{ name: traineeNameAgeSearch }, { age: traineeNameAgeSearch }]
     // }).toArray();
+
     const result = await dbo.collection(collectionName).find({
         role: "trainee",
-        $or: [{ name: traineeNameAgeSearch }, { age: traineeNameAgeSearch }]
+        $or: [{ name: new RegExp(traineeNameAgeSearch, 'i') }, { age: traineeNameAgeSearch }]
     }).toArray();
+
     return result;
 }
 // trainer search course to show trainee: 
