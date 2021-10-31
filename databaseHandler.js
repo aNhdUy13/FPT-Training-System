@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb+srv://duyanhday:duyanh12345678@cluster0.dgakd.mongodb.net/FPTcoSystem";
+var url = "mongodb://duyanhday:duyanh12345678@cluster0-shard-00-00.dgakd.mongodb.net:27017,cluster0-shard-00-01.dgakd.mongodb.net:27017,cluster0-shard-00-02.dgakd.mongodb.net:27017/FPTcoSystem?replicaSet=atlas-48tdag-shard-0&ssl=true&authSource=admin";
 const dbName = "FPTcoSystem";
 
 async function getDBO() {
