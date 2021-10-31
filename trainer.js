@@ -30,10 +30,12 @@ router.post('/viewAllTrainerAccount',async (req,res)=>{
 })
 
 router.get('/trainerHome', async(req, res) => {
-    const newValues = await dbHandler.viewAllTrainerAccount("users")
+    // const newValues = await dbHandler.viewProfile(req.session.user._id)
     if(!req.session.username)
-        return res.render('login')
-    res.render('trainer/trainerHome', { viewAllTrainerAccount: newValues });
+        return res.render('login');
+        const newValues = await dbHandler.viewProfile("users",req.session.user.email);
+        console.log(newValues);
+    res.render('trainer/trainerHome', { viewProfile: newValues[0] });
 })
 
 router.get('/viewAllTrainee', async(req, res) => {

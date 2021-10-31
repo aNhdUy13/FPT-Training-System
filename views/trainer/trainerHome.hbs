@@ -28,22 +28,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                        {{#each viewAllTrainerAccount}}
+                        
                             <tr>
-                                <td>{{name}}</td>
-                                <td>{{age}}</td>
-                                <td>{{DoB}}</td>     
-                                <td>{{education}}</td>
-                                <td>{{role}}</td> 
+                                <td>{{viewProfile.name}}</td>
+                                <td>{{viewProfile.age}}</td>
+                                <td>{{viewProfile.DoB}}</td>     
+                                <td>{{viewProfile.education}}</td>
+                                <td>{{viewProfile.role}}</td> 
                                 <td>
                                     <button>
-                                        <a href="../trainer/updateTrainerAccount?id={{_id}}">                                      
+                                        <a href="../trainer/updateTrainerAccount?id={{viewProfile._id}}">                                      
                                         Update
                                         </a>
                                     </button>
                                 </td>                    
                             </tr>
-                        {{/each }}
+                    
                 </tbody>
            </table>
         </div>

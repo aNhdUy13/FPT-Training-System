@@ -25,7 +25,6 @@ async function emailFinding(emailIn) {
     const resultss = await dbo.collection("users").
     find({ email: emailIn }).toArray();
     return resultss;
-
 }
 
 /* ======== Admin  Role ========*/
@@ -70,7 +69,12 @@ async function searchStaffAccount(collectionName, staffNameAgeSearch) {
 async function viewAllTrainerAccount(collectionName) {
     const dbo = await getDBO();
     const result = await dbo.collection(collectionName).find({ role: 'trainer' }).toArray();
+    return result;
+}
 
+async function viewProfile(collectionName,email) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({ email: email }).toArray();
     return result;
 }
 
@@ -184,7 +188,6 @@ async function doUpdateFunction(collectionName, Id, newValues) {
     // Lấy Id gửi về
     const condition = { "_id": ObectID(Id) };
     await dbo.collection(collectionName).updateOne(condition, newValues);
-
 }
 
 async function searchTraineeAccount(collectionName, traineeNameAgeSearch) {
@@ -321,5 +324,6 @@ module.exports = {
     updateFunctionTrainer,
     checkExistCourse,
     checkExistCourseCate,
-    searchCourse
+    searchCourse,
+    viewProfile
 }
