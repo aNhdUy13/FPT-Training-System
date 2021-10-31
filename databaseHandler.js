@@ -214,6 +214,34 @@ async function searchTrainerCourse(collectionName, traineeCourseSearch) {
     }).toArray();
     return result;
 }
+async function checkExistCourse(collectionName, courseName) {
+    const dbo = await getDBO();
+
+    const result = await dbo.collection(collectionName).findOne({ name: courseName });
+
+    var message;
+    if (result) {
+        message = "Course Name already in exists !";
+    } else {
+        message = "Suitable course name";
+    }
+    return message;
+
+}
+async function checkExistCourseCate(collectionName, courseCateName) {
+    const dbo = await getDBO();
+
+    const result = await dbo.collection(collectionName).findOne({ name: courseCateName });
+
+    var message;
+    if (result) {
+        message = "Course Category Name already in exists !";
+    } else {
+        message = "Suitable Course category name";
+    }
+    return message;
+
+}
 
 
 async function getTraineeName(collectionName) {
@@ -235,7 +263,13 @@ async function insertFunction(collectionName, data) {
 }
 async function searchCourseCategory(collectionName, nameCourseCate) {
     const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({ name: nameCourseCate }).toArray();
+    const result = await dbo.collection(collectionName ).find({ name: nameCourseCate }).toArray();
+
+    return result;
+}
+async function searchCourse(collectionName, nameCourseCate) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({$or: [{ name: nameCourseCate },{courseCategory: nameCourseCate}]}).toArray();
 
     return result;
 }
@@ -284,5 +318,8 @@ module.exports = {
     searchTrainerAccount,
     searchTrainerCourse,
     checkExistEmail,
-    updateFunctionTrainer
+    updateFunctionTrainer,
+    checkExistCourse,
+    checkExistCourseCate,
+    searchCourse
 }

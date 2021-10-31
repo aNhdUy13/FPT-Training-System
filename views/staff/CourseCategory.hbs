@@ -28,11 +28,14 @@
                     <form  action="../staff/addCourseCategory" method="post">
                         <tr>
                             <td>Name : </td>
-                            <td><input type="text" name="txtNameCourseCategory"> </td> 
+                            <td><input type="text" name="txtNameCourseCategory"> </td>
+                            <td style="color: brown;">{{errorName}}</td>
                         </tr>
                         <tr>
                             <td>Description : </td>
-                            <td><input type="text" name="txtCourseDescription"> </td> 
+                            <td><input type="text" name="txtCourseDescription"> </td>
+                            <td style="color: brown;">{{errorDescription}}</td>
+
                         </tr>
                         <td></td>
                             <td><input type="submit" value="Insert" class="insertButton"></td>

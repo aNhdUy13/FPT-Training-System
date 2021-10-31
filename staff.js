@@ -162,10 +162,24 @@ router.post('/searchTraineeAccount', async(req, res) => {
 router.post('/addCourseCategory', async(req, res) => {
     const nameCourseCate = req.body.txtNameCourseCategory;
     const descriptionCourseCate = req.body.txtCourseDescription;
-    const dataCourseCategory = { name: nameCourseCate, description: descriptionCourseCate }
-    await dbHandler.insertFunction("courseCategory", dataCourseCategory);
+    const checkExistCourseCateName = await dbHandler.checkExistCourseCate("courseCategory", nameCourseCate);
 
-    res.redirect('CourseCategory');
+ if (nameCourseCate.trim().length == 0) {
+        res.render('staff/CourseCategory', { errorName: "Error : Please fill in the Course Category Name " })
+    } else if (nameCourseCate.indexOf('0','1','2','3','4','5','6','7','8','9') != -1) {
+        res.render('staff/CourseCategory', { errorName: "Error : Please don't enter numeric characters in Course Name" })
+    } else if (checkExistCourseCateName == "Course Category Name already in exists !") {
+        res.render('staff/CourseCategory', { errorName: "Error : Course Category Name already in exists in System !!" })
+    }else if(descriptionCourseCate.trim().length == 0) {
+        res.render('staff/CourseCategory', { errorDescription: "Error : Please fill in the description " })
+    }
+    else{
+        const dataCourseCategory = { name: nameCourseCate, description: descriptionCourseCate }
+        await dbHandler.insertFunction("courseCategory", dataCourseCategory);
+    
+        res.redirect('CourseCategory');
+    }
+
 
 })
 router.get('/deleteCourseCategory', async(req, res) => {
@@ -214,16 +228,29 @@ router.post('/addCourse', async(req, res) => {
     const nameCourse = req.body.txtNameCourse;
     const courseCategory = req.body.txtCourseCategory;
     const descriptionCourse = req.body.txtCourseDescription;
-    const dataCourseCategory = { name: nameCourse, courseCategory: courseCategory, description: descriptionCourse }
-    await dbHandler.insertFunction("course", dataCourseCategory);
+    const checkExistCourseName = await dbHandler.checkExistCourse("course", nameCourse);
 
-    res.redirect('Course');
+    if (nameCourse.trim().length == 0) {
+        res.render('staff/Course', { errorName: "Error : Please fill in the Course Name " })
+    } else if (nameCourse.indexOf('0','1','2','3','4','5','6','7','8','9') != -1) {
+        res.render('staff/Course', { errorName: "Error : Please don't enter numeric characters in Course Name" })
+    } else if (checkExistCourseName == "Course Name already in exists !") {
+        res.render('staff/Course', { errorName: "Error : Course Name already in exists in System !!" })
+    }else if(descriptionCourse.trim().length == 0) {
+        res.render('staff/Course', { errorDescription: "Error : Please fill in the description " })
+    }
+    else{
+        const dataCourseCategory = { name: nameCourse, courseCategory: courseCategory, description: descriptionCourse }
+        await dbHandler.insertFunction("course", dataCourseCategory);
+        res.redirect('Course');
+    }
+
 
 })
 router.post('/searchCourse', async(req, res) => {
-    const nameCourse = req.body.txtNameCourse;
+    const nameCourseCate = req.body.txtNameCourse;
 
-    const result = await dbHandler.searchCourseCategory("course", nameCourse);
+    const result = await dbHandler.searchCourse("course", nameCourseCate);
     res.render('staff/Course', { viewAll: result });
 })
 router.get('/deleteCourse', async(req, res) => {

@@ -28,7 +28,8 @@
                     <form  action="../staff/addCourse" method="post">
                         <tr>
                             <td>Name : </td>
-                            <td><input type="text" name="txtNameCourse"> </td> 
+                            <td><input type="text" name="txtNameCourse"> </td>
+                            <td style="color: brown;">{{errorName}}</td>
                         </tr>
                         <tr>
                             <td>Course Category: </td>
@@ -43,7 +44,8 @@
                         </tr>
                         <tr>
                             <td>Description : </td>
-                            <td><input type="text" name="txtCourseDescription"> </td> 
+                            <td><input type="text" name="txtCourseDescription"> </td>
+                            <td style="color: brown;">{{errorDescription}}</td>
                         </tr>
                         <td></td>
                             <td><input type="submit" value="Insert" class="insertButton"></td>
