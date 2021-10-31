@@ -289,7 +289,13 @@ async function getData(collectionName) {
 
 async function searchAssign(collectionName, nameCourseAssign) {
     const dbo = await getDBO();
-    const result = await dbo.collection(collectionName).find({ name1: nameCourseAssign }).toArray();
+    
+
+    const result = await dbo.collection(collectionName).find({
+
+        $or: [{ name1: new RegExp(nameCourseAssign, 'i') }]
+    }).toArray();
+
     return result;
 }
 
