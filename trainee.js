@@ -19,10 +19,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/traineeHome', async(req, res) => {
-    const newValues = await dbHandler.viewAllTraineeAccount("users")
     if(!req.session.username)
         return res.render('login')
-    res.render('trainee/traineeHome', { viewAllTraineeAccount: newValues });
+        const newValues = await dbHandler.viewProfileTrainee("users",req.session.user.email);
+        console.log(newValues);
+    res.render('trainee/traineeHome', { viewProfileTrainee: newValues[0] });
 })
 
 router.get('/viewCourseTrainee', async(req, res) => {

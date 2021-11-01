@@ -78,6 +78,12 @@ async function viewProfile(collectionName,email) {
     return result;
 }
 
+async function viewProfileTrainee(collectionName,email) {
+    const dbo = await getDBO();
+    const result = await dbo.collection(collectionName).find({ email: email }).toArray();
+    return result;
+}
+
 async function createTrainerAccount(collectionName, emailTrainer, passwordTrainer, nameTrainer,
     ageTrainer, DoBTrainer, educationTrainer) {
 
@@ -331,5 +337,6 @@ module.exports = {
     checkExistCourse,
     checkExistCourseCate,
     searchCourse,
-    viewProfile
+    viewProfile,
+    viewProfileTrainee
 }

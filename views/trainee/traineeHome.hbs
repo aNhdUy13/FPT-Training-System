@@ -32,13 +32,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                        {{#each viewAllTraineeAccount}}
+                        
                             <tr>
-                                <td>{{name}}</td>
-                                <td>{{age}}</td>
-                                <td>{{DoB}}</td>     
-                                <td>{{education}}</td>
-                                <td>{{role}}</td> 
+                                <td>{{viewProfileTrainee.name}}</td>
+                                <td>{{viewProfileTrainee.age}}</td>
+                                <td>{{viewProfileTrainee.DoB}}</td>     
+                                <td>{{viewProfileTrainee.education}}</td>
+                                <td>{{viewProfileTrainee.role}}</td> 
                                 <td>
                                     <button>
                                         <a href="viewCourseTrainee">                                      
@@ -47,7 +47,7 @@
                                     </button>
                                 </td>                                                                                 
                             </tr>
-                        {{/each }}
+                        
                 </tbody>
            </table>
         </div>
