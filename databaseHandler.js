@@ -225,7 +225,6 @@ async function searchTrainerCourse(collectionName, traineeCourseSearch) {
 }
 async function checkExistCourse(collectionName, courseName) {
     const dbo = await getDBO();
-
     const result = await dbo.collection(collectionName).findOne({ name: courseName });
 
     var message;
@@ -235,11 +234,10 @@ async function checkExistCourse(collectionName, courseName) {
         message = "Suitable course name";
     }
     return message;
-
 }
 async function checkExistCourseCate(collectionName, courseCateName) {
     const dbo = await getDBO();
-
+   
     const result = await dbo.collection(collectionName).findOne({ name: courseCateName });
 
     var message;

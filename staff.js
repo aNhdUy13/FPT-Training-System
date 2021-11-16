@@ -166,7 +166,7 @@ router.post('/addCourseCategory', async(req, res) => {
 
  if (nameCourseCate.trim().length == 0) {
         res.render('staff/CourseCategory', { errorName: "Error : Please fill in the Course Category Name " })
-    } else if (Number.isNaN(nameCourseCate) == false ) {
+    } else if (isNaN(nameCourseCate) == false ) {
         res.render('staff/CourseCategory', { errorName: "Error : Please don't enter numeric characters in Course Name" })
     } else if (checkExistCourseCateName == "Course Category Name already in exists !") {
         res.render('staff/CourseCategory', { errorName: "Error : Course Category Name already in exists in System !!" })
@@ -232,7 +232,7 @@ router.post('/addCourse', async(req, res) => {
 
     if (nameCourse.trim().length == 0) {
         res.render('staff/Course', { errorName: "Error : Please fill in the Course Name " })
-    } else if (Number.isNaN(nameCourse) == false) {
+    } else if (isNaN(nameCourse) == false) {
         res.render('staff/Course', { errorName: "Error : Please don't enter numeric characters in Course Name" })
     } else if (checkExistCourseName == "Course Name already in exists !") {
         res.render('staff/Course', { errorName: "Error : Course Name already in exists in System !!" })
