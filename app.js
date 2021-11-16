@@ -7,7 +7,6 @@ const session=require('express-session');
 
 const viewPath = path.join(__dirname, 'views/partial')
 hbs.registerPartials(viewPath)
-
 // session middle ware
 app.use(session({
     resave:true,
@@ -42,8 +41,7 @@ app.use('/trainer', trainerController);
 var traineeController = require('./trainee.js');
 app.use('/trainee', traineeController);
 
-
-
+// add a trainee in my room
 app.use(express.static('public'));
 
 

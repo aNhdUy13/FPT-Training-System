@@ -170,7 +170,7 @@ router.get('/deleteTrainerAccount', async(req, res) => {
     res.redirect('trainerManagement')
 }) 
 //update trainer
-router.get('/updateTrainerAccount', async(req, res) => {
+router.get('/updateTrainerAccount', async(req, res) => {        
 
     const id = req.query.id;
 
